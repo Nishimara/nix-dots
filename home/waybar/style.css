@@ -1,0 +1,131 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    font-size: 16px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(21, 18, 27, 0);
+    color: #cdd6f4;
+}
+
+tooltip {
+    background: #000000;
+    border-radius: 15px;
+    border-width: 2.5px;
+    border-style: solid;
+    border-color: #8aadf4;
+}
+
+#workspaces button {
+    padding: 0px;
+    color: #313244;
+    margin-right: 5px;
+}
+
+#workspaces button.active {
+    color: #f5a97f;
+}
+
+#workspaces button.focused {
+    color: #a6adc8;
+    background: #eba0ac;
+    border-radius: 15px;
+}
+
+#workspaces button.urgent {
+    color: #11111b;
+    background: #a6e3a1;
+    border-radius: 15px;
+}
+
+#workspaces button:hover {
+    background: #11111b;
+    color: #cdd6f4;
+    border-radius: 15px;
+}
+
+#window,
+#clock,
+#pulseaudio,
+#workspaces,
+#tray,
+#memory,
+#cpu,
+#disk,
+#language,
+
+#tray {
+    border-radius: 15px;
+    margin-right: 10px;
+}
+
+#workspaces {
+    border-radius: 15px;
+    margin-left: 5px;
+    padding-right: 3px;
+}
+
+#window {
+    border-radius: 15px;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+#clock {
+    color: #a6e3a1;
+    border-radius: 15px 15px 15px 15px;
+    margin-left: 5px;
+    border-right: 3px;
+}
+
+#memory {
+    color: #89b4fa;
+    border-radius: 15px 15px 15px 15px;
+    border-left: 0px;
+    border-right: 0px;
+    margin-left: 5px;
+}
+
+#cpu {
+    color: #89b4fa;
+    border-radius: 15px 15px 15px 15px;
+    border-left: 0px;
+    border-right: 0px;
+    margin-left: 5px;
+}
+
+#disk {
+    color: #a6e3a1;
+    border-radius: 15px 15px 15px 15px;
+    border-left: 0px;
+    border-right: 0px;
+    margin-left: 5px;
+}
+
+
+#pulseaudio {
+  color: #89b4fa;
+  border-left: 0px;
+  border-right: 0px;
+  border-radius: 15px 0px 0px 15px;
+}
+
+#pulseaudio.microphone {
+    color: #cba6f7;
+    border-left: 0px;
+    border-right: 0px;
+    border-radius: 0px 15px 15px 0px;
+    margin-right: 2px;
+}
+
+#language {
+    color: #15dbb7;
+    border-left: 0px;
+    border-right: 0px;
+    border-radius: 15px 15px 15px 15px;
+    margin-right: 2px;
+}
