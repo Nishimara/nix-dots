@@ -39,9 +39,8 @@
 	      modules = [
 	        ./home
           nixvimModule
-          #hyprland.homeManagerModules.default
         ];
-        extraSpecialArgs = {inherit inputs;};
+        extraSpecialArgs = { inherit inputs; };
       };
   };
 }
