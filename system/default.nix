@@ -71,7 +71,7 @@
   };
 
   environment.interactiveShellInit = ''
-    export EDITOR=neovim
+    export EDITOR=nvim
 
     alias wttr="curl wttr.in"
     alias tb="nc termbin.com 9999"

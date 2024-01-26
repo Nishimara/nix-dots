@@ -16,7 +16,7 @@
     username = "ayako";
     homeDirectory = "/home/ayako";
     sessionVariables = {
-      EDITOR = "neovim";
+      EDITOR = "nvim";
     };
     pointerCursor = {
       name = "Adwaita";
