@@ -38,7 +38,8 @@ tooltip {
 }
 
 #workspaces button.urgent {
-    background: #5163cc;
+    background: #596de0;
+    color: #ffffff;
     border-radius: 15px;
 }
 
@@ -74,6 +75,7 @@ tooltip {
     border-radius: 15px;
     margin-left: 60px;
     margin-right: 60px;
+    padding-left: 10px;
 }
 
 #clock {
