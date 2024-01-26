@@ -15,12 +15,13 @@
       env = [
         "MOZ_ENABLE_WAYLAND,1"
         "_JAVA_AWT_WM_NONREPARENTING,1"
-        "GDK_BACKEND=wayland"
-        "NIXOS_OZONE_WL=1"
-        "QT_QPA_PLATFORM=wayland-egl"
-        "CLITTER_BACKEND=wayland"
-        "SDL_VIDEODRIVER=wayland"
+        "GDK_BACKEND,wayland"
+        "NIXOS_OZONE_WL,1"
+        "QT_QPA_PLATFORM,wayland-egl"
+        "CLITTER_BACKEND,wayland"
+        "SDL_VIDEODRIVER,wayland"
         "XCURSOR_SIZE,12"
+        "GTK_THEME,Adwaita:dark"
       ];
 
       exec-once = "hyprpaper & mako & waybar & firefox & telegram-desktop";
