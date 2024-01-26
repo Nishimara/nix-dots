@@ -18,6 +18,8 @@
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
   networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
+  
+  # i really hate mail ru lmao
   networking.extraHosts = ''
     0.0.0.0 ok.ru
     0.0.0.0 api.ok.ru
@@ -155,6 +157,22 @@
 
   security = {
     pam.services.swaylock = {};
+
+    polkit.extraConfig = ''
+      polkit.addRule(function(action, subject) {
+        if (
+          subject.isInGroup("wheel") && (
+            action.id == "org.freedesktop.login1.reboot" ||
+            action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+            action.id == "org.freedesktop.login1.power-off" ||
+            action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+          )
+        )
+        {
+          return polkit.Result.YES;
+        }
+      })
+    '';
 
     doas.enable = true;
     sudo.enable = false;
