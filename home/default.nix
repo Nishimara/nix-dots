@@ -8,6 +8,7 @@
     ./fish
     ./git
     ./hyprland
+    ./firefox
   ];
 
   programs.home-manager.enable = true;
