@@ -9,6 +9,7 @@
     ./git
     ./hyprland
     ./firefox
+    ./wofi
   ];
 
   programs.home-manager.enable = true;
@@ -32,7 +33,6 @@
     slurp
     wl-clipboard
     mako
-    wofi
     telegram-desktop
     swaylock-effects
     gimp
