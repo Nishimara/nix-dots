@@ -24,7 +24,14 @@
         "GTK_THEME,Adwaita:dark"
       ];
 
-      exec-once = "hyprpaper & mako & waybar & firefox & telegram-desktop";
+      exec-once = [
+        "${pkgs.hyprpaper}/bin/hyprpaper"
+        "${pkgs.mako}/bin/mako"
+        "${pkgs.waybar}/bin/waybar"
+        "${pkgs.firefox}/bin/firefox"
+        "${pkgs.telegram-desktop}/bin/telegram-desktop"
+        "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
+      ];
 
       input = {
         kb_layout = "us,ru";
