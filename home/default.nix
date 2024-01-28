@@ -28,6 +28,13 @@
   };
 
   home.packages = with pkgs; [
+    # development
+    bun # typescript
+    gnumake
+    clang
+    clang-tools
+
+    # gui
     hyprpaper
     grim
     slurp
@@ -37,18 +44,22 @@
     swaylock-effects
     gimp
     prismlauncher
-    vesktop
-    bun
-    feh
-    clang
-    clang-tools
+    vesktop # discord with vencord
+    feh # image viewing tool
+    libnotify
+    keepassxc
+
+    # tools
     file
-    gnumake
+    pamixer # pulseaudio control
+    ranger # file manager in terminal
     grc # needed for fish colorizing plugin
     eza # colorful ls
-    libnotify
-    playerctl
+
+    # misc
+    yt-dlp
     man-pages
+    playerctl
   ];
 
   home.stateVersion = "24.05";

@@ -100,7 +100,6 @@
     vim
     wget
     git
-    kitty
     bat
     podman-compose
     vlc
@@ -109,20 +108,15 @@
     alsa-tools
     alsa-firmware
     alsa-oss
-    yt-dlp
-    keepassxc
     ntfs3g
     unzip
-    ranger
-    pavucontrol
-    busybox
     htop
-    pamixer
     man-pages
     man-pages-posix
     dig
     gnome3.adwaita-icon-theme
     wayland
+    polkit-kde-agent
   ];
 
   programs = {
@@ -157,21 +151,24 @@
   security = {
     pam.services.swaylock = {};
 
-    polkit.extraConfig = ''
-      polkit.addRule(function(action, subject) {
-        if (
-          subject.isInGroup("wheel") && (
-            action.id == "org.freedesktop.login1.reboot" ||
-            action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
-            action.id == "org.freedesktop.login1.power-off" ||
-            action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+    polkit = {
+      enable = true;
+      extraConfig = ''
+        polkit.addRule(function(action, subject) {
+          if (
+            subject.isInGroup("wheel") && (
+              action.id == "org.freedesktop.login1.reboot" ||
+              action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+              action.id == "org.freedesktop.login1.power-off" ||
+              action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+            )
           )
-        )
-        {
-          return polkit.Result.YES;
-        }
-      })
-    '';
+          {
+            return polkit.Result.YES;
+          }
+        })
+      '';
+    };
 
     doas.enable = true;
     sudo.enable = false;
