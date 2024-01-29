@@ -117,6 +117,7 @@
     gnome3.adwaita-icon-theme
     wayland
     polkit-kde-agent
+    killall
   ];
 
   programs = {
@@ -146,6 +147,7 @@
       pulse.enable = true;
       wireplumber.enable = true;
     };
+    udisks2.enable = true;
   };
 
   security = {

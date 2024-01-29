@@ -10,10 +10,11 @@
     ./hyprland
     ./firefox
     ./wofi
+    ./mako
   ];
 
   programs.home-manager.enable = true;
-
+  
   home = {
     username = "ayako";
     homeDirectory = "/home/ayako";
@@ -36,10 +37,7 @@
 
     # gui
     hyprpaper
-    grim
-    slurp
-    wl-clipboard
-    mako
+    grimblast # screenshots
     telegram-desktop
     swaylock-effects
     gimp
@@ -55,6 +53,7 @@
     ranger # file manager in terminal
     grc # needed for fish colorizing plugin
     eza # colorful ls
+    wl-clipboard
 
     # misc
     yt-dlp
