@@ -93,6 +93,10 @@
         workspace_swipe = "off";
       };
 
+     windowrule = [
+       "float, title:(PolicyKit1)"
+     ];
+
       bindm = [
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
@@ -107,8 +111,10 @@
         "$mod, G, exec, wofi --show drun"
         "$mod, P, pseudo," #dwindle
         "$mod, J, togglesplit," #dwindle
-        "CTRL, Print, exec, grim -g \"\$(slurp -d)\" - | wl-copy -t image/png && wl-paste > $HOME/Pictures/Screenshots/Screenshot\\ From\\ \$(date +%Y-%m-%d\\ %H-%M-%S).png | notify-send \"Screenshot of the region taken\" -t 1000"
-        ", Print, exec, grim - | wl-copy -t image/png && wl-paste > $HOME/Pictures/Screenshots/Screenshot\\ From\\ \$(date +%Y-%m-%d\\ %H-%M-%S).png | notify-send \"Screenshot of whole screen taken\" -t 1000"
+#       "CTRL, Print, exec, grim -g \"\$(slurp -d)\" - | wl-copy -t image/png && wl-paste > $HOME/Pictures/Screenshots/Screenshot\\ From\\ \$(date +%Y-%m-%d\\ %H-%M-%S).png | notify-send \"Screenshot of the region taken\" -t 1000"
+#       ", Print, exec, grim - | wl-copy -t image/png && wl-paste > $HOME/Pictures/Screenshots/Screenshot\\ From\\ \$(date +%Y-%m-%d\\ %H-%M-%S).png | notify-send \"Screenshot of whole screen taken\" -t 1000"
+        "CTRL, Print, exec, grimblast copysave area ~/Pictures/Screenshots/Screenshot\ from\ $(date +Y-%m-%d\ %H-%M-%S).png --notify"
+        ", Print, exec, grimblast copysave output ~/Pictures/Screenshots/Screenshot\ from\ $(date +Y-%m-%d\ %H-%M-%S).png --notify"
         "$mod, L, exec, swaylock -e -i ${../../imgs/screenlock.png}"
         ", F8, exec, amixer set Capture toggle"
 
