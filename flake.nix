@@ -39,8 +39,6 @@
     };
     defaultPackage.${system} = home-manager.defaultPackage.${system};
 
-    home-manager.useUserPackages = true;
-
     homeConfigurations."ayako" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       modules = [

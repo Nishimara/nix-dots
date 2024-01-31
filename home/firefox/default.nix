@@ -98,7 +98,7 @@ in {
           "dom.security.https_only_mode_ever_enabled" = lock-true;
           "dom.webaudio.enabled" = lock-false;
           "media.autoplay.default" = lock-0;
-          "media.autoplay.enabled" = lock-true;
+          "media.autoplay.enabled" = lock-false;
           "media.eme.enabled" = lock-true; #drm
           "media.gmp-widevinecdm.enabled" = lock-true; #drm
           "media.navigator.enabled" = lock-false;

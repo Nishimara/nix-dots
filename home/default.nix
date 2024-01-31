@@ -54,6 +54,7 @@
     grc # needed for fish colorizing plugin
     eza # colorful ls
     wl-clipboard
+    btop # amazing top
 
     # misc
     yt-dlp

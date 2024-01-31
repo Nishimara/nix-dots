@@ -14,6 +14,9 @@
     useTmpfs = true;
     cleanOnBoot = true;
   };
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  hardware.opengl.enable = true;
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
@@ -88,8 +91,6 @@
     config.common.default = "hyprland";
   };
 
-  sound.enable = true;
-
   users.users.ayako = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" "audio" "video" "input" ];
@@ -118,6 +119,7 @@
     wayland
     polkit-kde-agent
     killall
+    xdg-utils
   ];
 
   programs = {
