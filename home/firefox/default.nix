@@ -50,6 +50,7 @@ in {
         NoDefaultBookmarks = true;
         NetworkPrediction = false;
         CaptivePortal = false;
+        ExtensionUpdate = false;
 
         ExtensionSettings = {
           "dark-theme@mozilla.org" = {
