@@ -28,8 +28,9 @@
         "${pkgs.hyprpaper}/bin/hyprpaper"
         "${pkgs.mako}/bin/mako"
         "${pkgs.waybar}/bin/waybar"
-        "${pkgs.firefox}/bin/firefox"
+        "firefox" # run from env cuz otherwise its blind for user configuration
         "${pkgs.telegram-desktop}/bin/telegram-desktop"
+        "${pkgs.vesktop}/bin/vesktop --disable-gpu"
         "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
       ];
 
