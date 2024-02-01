@@ -120,6 +120,7 @@
     polkit-kde-agent
     killall
     xdg-utils
+    alsa-utils
   ];
 
   programs = {

@@ -11,6 +11,7 @@
     ./firefox
     ./wofi
     ./mako
+    ./swaylock
   ];
 
   programs.home-manager.enable = true;
@@ -39,7 +40,6 @@
     hyprpaper
     grimblast # screenshots
     telegram-desktop
-    swaylock-effects
     gimp
     prismlauncher
     vesktop # discord with vencord
