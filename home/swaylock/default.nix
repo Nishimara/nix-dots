@@ -38,7 +38,7 @@
       grace = 2;
       grace-no-mouse = true;
       grace-no-touch = true;
-      datestr = "%a,  %B %e";
+      datestr = "%a, %B %e";
       timestr = "%I:%M %p";
       fade-in = "0.2";
       ignore-empty-password = true;
