@@ -114,10 +114,11 @@
         "$mod, G, exec, wofi --show drun"
         "$mod, P, pseudo," #dwindle
         "$mod, J, togglesplit," #dwindle
-        "CTRL, Print, exec, grimblast copysave area ~/Pictures/Screenshots/Screenshot\ from\ $(date +Y-%m-%d\ %H-%M-%S).png --notify"
-        ", Print, exec, grimblast copysave output ~/Pictures/Screenshots/Screenshot\ from\ $(date +Y-%m-%d\ %H-%M-%S).png --notify"
+        "CTRL, Print, exec, grimblast --notify copysave area \"$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\\ %H-%M-%S).png\""
+        ", Print, exec, grimblast --notify copysave output \"$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\\ %H-%M-%S).png\""
         "$mod, L, exec, swaylock -e -i ${../../imgs/screenlock.png}"
         ", F8, exec, amixer set Capture toggle"
+        "$mod, y, exec, killall -SIGUSR1 .waybar_wrapped"
 
         "$mod, left, movefocus, l"
         "$mod, right, movefocus, r"
