@@ -107,7 +107,7 @@
     ffmpeg
     alsa-lib
     alsa-tools
-    alsa-firmware
+    alsa-utils
     alsa-oss
     ntfs3g
     unzip
@@ -120,7 +120,6 @@
     polkit-kde-agent
     killall
     xdg-utils
-    alsa-utils
   ];
 
   programs = {
