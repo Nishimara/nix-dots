@@ -98,11 +98,22 @@
         "float, class:^(org.kde.polkit-kde-authentication-agent-1)$"
         "float, class:^(org.telegram.desktop|telegramdesktop)$,title:^(Media viewer)$"
         "fullscreen, class:^(org.telegram.desktop|telegramdesktop)$,title:^(Media viewer)$"
+        "float, class:^(vesktop)$,initialTitle:^(Discord Popout)$"
+        "float, class:^(firefox)$,title:^(Picture-in-Picture)$"
       ];
 
       bindm = [
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
+      ];
+
+      bindr = [
+        "$mod, G, exec, pkill wofi || wofi --show drun"
+      ];
+
+      binde = [
+        ", XF86AudioRaiseVolume, exec, amixer -q sset Master 5%+"
+        ", XF86AudioLowerVolume, exec, amixer -q sset Master 5%-"
       ];
 
       bind = [
@@ -111,7 +122,6 @@
         "$mod SHIFT, Q, exit,"
         "$mod, E, exec, thunar"
         "$mod, V, toggleFloating,"
-        "$mod, G, exec, wofi --show drun"
         "$mod, P, pseudo," #dwindle
         "$mod, J, togglesplit," #dwindle
         "CTRL, Print, exec, grimblast --notify copysave area \"$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\\ %H-%M-%S).png\""
@@ -128,8 +138,6 @@
         "$mod, mouse_down, workspace, e+1"
         "$mod, mouse_up, workspace, e-1"
 
-        ", XF86AudioRaiseVolume, exec, amixer -q sset Master 5%+"
-        ", XF86AudioLowerVolume, exec, amixer -q sset Master 5%-"
         ", XF86AudioMicMute, exec, amixer set Capture toggle"
         ", XF86AudioMute, exec, amixer set Master toggle"
         ", XF86AudioPlay, exec, playerctl play-pause"
