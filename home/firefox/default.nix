@@ -192,18 +192,17 @@ in {
         # all the exts may be found there
         # https://gitlab.com/rycee/nur-expressions/-/blob/master/pkgs/firefox-addons/addons.json?ref_type=heads
 
-        ublock-origin
-        istilldontcareaboutcookies
-        darkreader
-        user-agent-string-switcher
-        violentmonkey
         clearurls
+        darkreader
+        istilldontcareaboutcookies
+        ublock-origin
+        violentmonkey
+        user-agent-string-switcher
 
         # missed:
         # * foxyproxy
-        # * 7tv & frankerfacez (twitch shit)
         # * standart mozilla dark theme
-      ];
+      ] ++ [ inputs.firefox-addons.packages.${pkgs.system}."7tv" ];
 
       # https://github.com/Khalylexe/Firefox-Rounded-Theme
       userContent = builtins.replaceStrings [ "wallpaper.jpg" ] [ "${../../imgs/firefox-wp.jpg}" ] "${builtins.readFile ./userContent.css}";
