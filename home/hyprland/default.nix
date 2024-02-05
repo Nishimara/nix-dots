@@ -109,6 +109,7 @@
 
       bindr = [
         "$mod, G, exec, pkill wofi || wofi --show drun"
+        "$mod, Y, exec, pkill -SIGUSR1 waybar" # hide/unhide waybar
       ];
 
       binde = [
@@ -128,7 +129,6 @@
         ", Print, exec, grimblast --notify copysave output \"$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\\ %H-%M-%S).png\""
         "$mod, L, exec, swaylock -e -i ${../../imgs/screenlock.png}"
         ", F8, exec, amixer set Capture toggle"
-        "$mod, y, exec, killall -SIGUSR1 .waybar_wrapped"
 
         "$mod, left, movefocus, l"
         "$mod, right, movefocus, r"
