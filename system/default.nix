@@ -40,9 +40,9 @@
     };
   };
 
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "";
+    variant = "";
   };
 
   fonts = { 
@@ -191,6 +191,12 @@
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [ 22 ];
+    allowedTCPPortRanges = [
+      { from = 1714; to = 1764; } # KDE connect
+    ];
+    allowedUDPPortRanges = [
+      { from = 1714; to = 1764; } # KDE connect
+    ];
   };
 
   systemd.oomd.enable = true;

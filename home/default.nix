@@ -15,7 +15,9 @@
   ];
 
   programs.home-manager.enable = true;
-  
+
+  services.kdeconnect.enable = true;
+
   home = {
     username = "ayako";
     homeDirectory = "/home/ayako";
