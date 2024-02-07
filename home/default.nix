@@ -16,7 +16,10 @@
 
   programs.home-manager.enable = true;
 
-  services.kdeconnect.enable = true;
+  services.kdeconnect = {
+    enable = true;
+    indicator = true;
+  };
 
   home = {
     username = "ayako";

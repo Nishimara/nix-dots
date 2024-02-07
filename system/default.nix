@@ -16,7 +16,11 @@
   };
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  hardware.opengl.enable = true;
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
@@ -122,13 +126,29 @@
     xdg-utils
   ];
 
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+    "steam"
+    "steam-original"
+    "steam-run"
+  ];
+
   programs = {
+    adb.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
     };
-    adb.enable = true;
     fish.enable = true;
+    steam = {
+      package = pkgs.steam.override {
+        extraPkgs = pkgs: with pkgs; [
+          gamescope
+          mangohud
+        ];
+      };
+      enable = true;
+      gamescopeSession.enable = true;
+    };
     # should be very concerned about this thing tho
     # it manages SYS_CAP_RESOURCE
     # probably want to move away to self-written rnnoise
@@ -182,10 +202,15 @@
     }];
   };
 
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-    defaultNetwork.settings.dns_enabled = true;
+  virtualisation = {
+    oci-containers = {
+      backend = "podman";
+    };
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
   };
 
   networking.firewall = {
