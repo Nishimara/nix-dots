@@ -22,6 +22,16 @@
         "SDL_VIDEODRIVER,wayland"
         "XCURSOR_SIZE,12"
         "GTK_THEME,Adwaita:dark"
+
+        # tearing
+        "WLR_DRM_NO_ATOMIC,1" # only for kernel < 6.8
+
+        # nvidia shit
+        "LIBVA_DRIVER_NAME,nvidia"
+        "XDG_SESSION_TYPE,wayland"
+        "GBM_BACKEND,nvidia-drm"
+        "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+        "WLR_NO_HARDWARE_CURSORS,1"
       ];
 
       exec-once = [
@@ -30,7 +40,7 @@
         "${pkgs.waybar}/bin/waybar"
         "firefox" # run from env cuz otherwise its blind for user configuration
         "${pkgs.telegram-desktop}/bin/telegram-desktop"
-        "${pkgs.vesktop}/bin/vesktop --disable-gpu"
+        "${pkgs.vesktop}/bin/vesktop"
         "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
       ];
 
@@ -51,6 +61,7 @@
       };
 
       general = {
+        allow_tearing = true;
         gaps_in = 5;
         gaps_out = 20;
         border_size = 2;
@@ -100,6 +111,8 @@
         "fullscreen, class:^(org.telegram.desktop|telegramdesktop)$,title:^(Media viewer)$"
         "float, class:^(vesktop)$,initialTitle:^(Discord Popout)$"
         "float, class:^(firefox)$,title:^(Picture-in-Picture)$"
+
+        "immediate, class:^(cs2)$"
       ];
 
       bindm = [

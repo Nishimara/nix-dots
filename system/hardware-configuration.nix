@@ -14,7 +14,7 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/a3c96b2a-f56a-4813-bba5-1b907321c42b";
+    { device = "/dev/disk/by-uuid/6b777328-7a9f-4993-9975-dbf108f9bbb9";
       fsType = "btrfs";
       options = [ "subvol=@" "ssd" ];
     };
@@ -27,6 +27,12 @@
   fileSystems."/home" =
     { device = "/dev/disk/by-uuid/be118546-895f-4e8b-8e93-8939d149b1ff";
       fsType = "ext4";
+    };
+
+  fileSystems."/home/ayako/Games" =
+    { device = "/dev/disk/by-uuid/6b777328-7a9f-4993-9975-dbf108f9bbb9";
+      fsType = "btrfs";
+      options = [ "subvol=Games" "ssd" "compress=zstd" ];
     };
 
   swapDevices = [{
