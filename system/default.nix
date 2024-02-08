@@ -22,6 +22,16 @@
     driSupport32Bit = true;
   };
 
+  # proud nvidia user
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+    open = false; # sadly
+    nvidiaSettings = false;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
   networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
@@ -44,9 +54,12 @@
     };
   };
 
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+  services.xserver = {
+    videoDrivers = [ "nvidia" ];
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
   };
 
   fonts = { 
@@ -130,6 +143,7 @@
     "steam"
     "steam-original"
     "steam-run"
+    "nvidia-x11"
   ];
 
   programs = {
@@ -139,10 +153,10 @@
       enableSSHSupport = true;
     };
     fish.enable = true;
+    gamemode.enable = true;
     steam = {
       package = pkgs.steam.override {
         extraPkgs = pkgs: with pkgs; [
-          gamescope
           mangohud
         ];
       };
