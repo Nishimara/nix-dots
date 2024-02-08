@@ -3,7 +3,7 @@
   programs.kitty = {
     enable = true;
     settings = {
-      include = "./mocha.conf";
+      include = "${./mocha.conf}";
       mouse_hide_wait = "2.0";
       font_family = "jetbrains mono nerd font";
       font_size = 14;
