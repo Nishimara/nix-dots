@@ -5,6 +5,9 @@
 
     interactiveShellInit = ''
       set fish_greeting; # Disable greeting
+
+      alias wttr="curl wttr.in"
+      alias tb="nc termbin.com 9999"
     '';
 
     plugins = [
