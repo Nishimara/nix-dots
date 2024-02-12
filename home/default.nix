@@ -16,9 +16,12 @@
 
   programs.home-manager.enable = true;
 
-  services.kdeconnect = {
-    enable = true;
-    indicator = true;
+  services = {
+    kdeconnect = {
+      enable = true;
+      indicator = true;
+    };
+    mpris-proxy.enable = true; # control audio via bluetooth headphones buttons
   };
 
   home = {
@@ -40,6 +43,7 @@
     gnumake
     clang
     clang-tools
+    python3Minimal
 
     # gui
     hyprpaper
@@ -58,6 +62,7 @@
     ranger # file manager in terminal
     grc # needed for fish colorizing plugin
     eza # colorful ls
+    fd # user-friendly find
     wl-clipboard
     btop # amazing top
 
