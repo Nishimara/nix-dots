@@ -24,7 +24,7 @@
         "GTK_THEME,Adwaita:dark"
 
         # tearing
-        "WLR_DRM_NO_ATOMIC,1" # only for kernel < 6.8
+#       "WLR_DRM_NO_ATOMIC,1" # only for kernel < 6.8
 
         # nvidia shit
         "LIBVA_DRIVER_NAME,nvidia"
@@ -40,7 +40,7 @@
         "${pkgs.waybar}/bin/waybar"
         "firefox" # run from env cuz otherwise its blind for user configuration
         "${pkgs.telegram-desktop}/bin/telegram-desktop"
-        "${pkgs.vesktop}/bin/vesktop"
+        "${pkgs.vesktop}/bin/vesktop --disable-gpu" # it may kill a wm with gpu
         "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
       ];
 
@@ -61,7 +61,7 @@
       };
 
       general = {
-        allow_tearing = true;
+#       allow_tearing = true;
         gaps_in = 5;
         gaps_out = 20;
         border_size = 2;
@@ -105,6 +105,10 @@
         workspace_swipe = "off";
       };
 
+      misc = {
+        no_direct_scanout = false;
+      };
+
       windowrulev2 = [
         "float, class:^(org.kde.polkit-kde-authentication-agent-1)$"
         "float, class:^(org.telegram.desktop|telegramdesktop)$,title:^(Media viewer)$"
@@ -112,7 +116,7 @@
         "float, class:^(vesktop)$,initialTitle:^(Discord Popout)$"
         "float, class:^(firefox)$,title:^(Picture-in-Picture)$"
 
-        "immediate, class:^(cs2)$"
+#       "immediate, fullscreen:1"
       ];
 
       bindm = [
