@@ -2,16 +2,18 @@
 {
   programs.tmux = {
     enable = true;
+    baseIndex = 1;
     clock24 = false;
+    escapeTime = 10;
+    historyLimit = 10000;
     terminal = "screen-256color";
     newSession = true;
     extraConfig = ''
       set -ga terminal-overrides 'foot:Tc'
       set -g set-titles on
-      set -g history-limir 10000
-      set -g base-index 1
       setw -g pane-base-index 1
       set -g mouse on
+      set-option -sa terminal-features \',xterm-kitty:RGB\'
       new -d -s $USER
       bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'wl-copy'
       set -g base-index 1
