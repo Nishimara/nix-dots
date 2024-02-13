@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
@@ -6,6 +6,7 @@
       ./hardware-configuration.nix
       ./tmux
       ./neovim
+      ./xray
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -20,6 +21,11 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
+  };
+
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
   };
 
   # proud nvidia user
@@ -94,9 +100,6 @@
 
   environment.interactiveShellInit = ''
     export EDITOR=nvim
-
-    alias wttr="curl wttr.in"
-    alias tb="nc termbin.com 9999"
   '';
 
   xdg.portal= {
@@ -137,7 +140,7 @@
     polkit-kde-agent
     killall
     xdg-utils
-  ];
+  ] ++ [ inputs.agenix.packages.${pkgs.system}.default ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
     "steam"
@@ -166,10 +169,11 @@
     # should be very concerned about this thing tho
     # it manages SYS_CAP_RESOURCE
     # probably want to move away to self-written rnnoise
-    # noisetorch.enable = true;
+    noisetorch.enable = true;
   };
 
   services = {
+    blueman.enable = true;
     openssh.enable = true;
     fail2ban = {
       enable = true;
