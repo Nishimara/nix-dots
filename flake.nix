@@ -17,10 +17,6 @@
     nixvim.url = "github:nix-community/nixvim";
 
     hyprland.url = "github:hyprwm/Hyprland";
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
 
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
@@ -28,7 +24,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, agenix, nixvim, hyprland, hyprland-plugins, firefox-addons }@inputs: 
+  outputs = { self, nixpkgs, home-manager, agenix, nixvim, hyprland, firefox-addons }@inputs: 
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
