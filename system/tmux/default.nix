@@ -6,7 +6,7 @@
     clock24 = false;
     escapeTime = 10;
     historyLimit = 10000;
-    terminal = "screen-256color";
+    terminal = "tmux-256color";
     newSession = true;
     extraConfig = ''
       set -ga terminal-overrides 'foot:Tc'
