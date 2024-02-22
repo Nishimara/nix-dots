@@ -50,11 +50,12 @@
     grimblast # screenshots
     telegram-desktop
     gimp
-    prismlauncher
+    prismlauncher # minecraft
     vesktop # discord with vencord
     feh # image viewing tool
     libnotify
-    keepassxc
+    keepassxc # password manager
+    qbittorrent
 
     # tools
     file
@@ -65,11 +66,12 @@
     fd # user-friendly find
     wl-clipboard
     btop # amazing top
+    wineWowPackages.waylandFull
 
     # misc
     yt-dlp
     man-pages
-    playerctl
+    playerctl # control media
   ];
 
   home.stateVersion = "24.05";

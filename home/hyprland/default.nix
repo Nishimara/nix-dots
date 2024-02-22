@@ -23,11 +23,11 @@
 #       "WLR_DRM_NO_ATOMIC,1" # only for kernel < 6.8
 
         # nvidia shit
-        "LIBVA_DRIVER_NAME,nvidia"
-        "XDG_SESSION_TYPE,wayland"
-        "GBM_BACKEND,nvidia-drm"
-        "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-        "WLR_NO_HARDWARE_CURSORS,1"
+#       "LIBVA_DRIVER_NAME,nvidia"
+#       "XDG_SESSION_TYPE,wayland"
+#       "GBM_BACKEND,nvidia-drm"
+#       "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+#       "WLR_NO_HARDWARE_CURSORS,1"
       ];
 
       exec-once = [
@@ -36,7 +36,7 @@
         "${pkgs.waybar}/bin/waybar"
         "firefox" # run from env cuz otherwise its blind for user configuration
         "${pkgs.telegram-desktop}/bin/telegram-desktop"
-        "${pkgs.vesktop}/bin/vesktop --disable-gpu" # it may kill a wm with gpu
+        "${pkgs.vesktop}/bin/vesktop" # it may kill a wm with gpu (nvidia)
         "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
       ];
 
@@ -141,7 +141,7 @@
         "CTRL, Print, exec, grimblast --notify copysave area \"$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\\ %H-%M-%S).png\""
         ", Print, exec, grimblast --notify copysave output \"$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\\ %H-%M-%S).png\""
         "$mod, L, exec, swaylock -e -i ${../../imgs/screenlock.png}"
-        ", F8, exec, amixer set Capture toggle"
+        ", F8, exec, amixer set Capture toggle && bash ${./notify-mic-status.sh}"
 
         "$mod, left, movefocus, l"
         "$mod, right, movefocus, r"
