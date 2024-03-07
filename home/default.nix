@@ -14,7 +14,10 @@
     ./swaylock
   ];
 
-  programs.home-manager.enable = true;
+  programs = {
+    home-manager.enable = true;
+    obs-studio.enable = true;
+  };
 
   services = {
     kdeconnect = {
@@ -56,6 +59,8 @@
     libnotify
     keepassxc # password manager
     qbittorrent
+    gnome.eog # image viewer
+    gnome.nautilus # file manager
 
     # tools
     file

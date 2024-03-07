@@ -17,32 +17,36 @@
   };
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  hardware.opengl = {
-    enable = true;
-    driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      intel-media-driver
-    ];
-  };
+  hardware = {
+    opengl = {
+      enable = true;
+      driSupport32Bit = true;
+      extraPackages = with pkgs; [
+        intel-media-driver
+      ];
+    };
 
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-  };
+    opentabletdriver.enable = true;
 
-  # proud nvidia user
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    open = false; # sadly
-    nvidiaSettings = false;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  
-    prime = {
-      sync.enable = true;
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:1:0:0";
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+
+    # proud nvidia user
+    nvidia = {
+      modesetting.enable = true;
+      powerManagement.enable = false;
+      powerManagement.finegrained = false;
+      open = false; # sadly
+      nvidiaSettings = false;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+      prime = {
+        sync.enable = true;
+        intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
     };
   };
   services.xserver.videoDrivers = [ "nvidia" ];
