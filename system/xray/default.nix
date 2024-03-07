@@ -1,12 +1,9 @@
 { config, pkgs, ... }:
 {
   age = {
-    secrets = {
-      xray = {
-        name = "xray.json";
-        file = ../../secrets/xray.age;
-        mode = "440";
-      };
+    secrets.xray = {
+      name = "xray.json";
+      file = ../../secrets/xray.age;
     };
     identityPaths = [ "/root/.ssh/secrets" ];
   };

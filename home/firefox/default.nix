@@ -177,10 +177,11 @@ in {
         lockPref("toolkit.telemetry.unified", false);
         lockPref("toolkit.telemetry.unifiedOptIn", false);
         lockPref("toolkit.telemetry.updatePing.enabled", false);
-        lockPref("webgl.disabled", true);
-        lockPref("webgl.renderer-string-override", "");
-        lockPref("webgl.vendor-string-override", "");
       '';
+#       lockPref("webgl.disabled", true);
+#       lockPref("webgl.renderer-string-override", "");
+#       lockPref("webgl.vendor-string-override", "");
+#     '';
     };
 
     enable = true;
