@@ -12,6 +12,7 @@
     ./wofi
     ./mako
     ./swaylock
+    ./vsc
   ];
 
   programs = {
@@ -20,6 +21,7 @@
   };
 
   services = {
+    easyeffects.enable = true;
     kdeconnect = {
       enable = true;
       indicator = true;
@@ -40,13 +42,19 @@
     };
   };
 
+  dconf = {
+    enable = true;
+    settings."org/gnome/desktop/interface" = {
+      color-scheme = "preferer-dark";
+    };
+  };
+
   home.packages = with pkgs; [
     # development
-    bun # typescript
     gnumake
     clang
     clang-tools
-    python3Minimal
+    python3Full
 
     # gui
     hyprpaper
@@ -61,6 +69,20 @@
     qbittorrent
     gnome.eog # image viewer
     gnome.nautilus # file manager
+    (lutris-free.override {
+      extraLibraries = pkgs: [
+        libadwaita
+        pango
+        gtk4
+      ];
+      extraPkgs = pkgs: [
+        mangohud
+        bubblewrap
+        gamemode
+        gamescope
+      ];
+    }) # yay windows games (dont forget bubblewrap for them)
+    spotube # spotify without electron wow
 
     # tools
     file
@@ -77,6 +99,7 @@
     yt-dlp
     man-pages
     playerctl # control media
+    mindustry-wayland # ahh games
   ];
 
   home.stateVersion = "24.05";

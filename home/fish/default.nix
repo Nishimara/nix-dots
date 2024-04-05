@@ -6,6 +6,8 @@
     interactiveShellInit = ''
       set fish_greeting; # Disable greeting
 
+      ${pkgs.nix-your-shell}/bin/nix-your-shell fish | source
+
       alias wttr="curl wttr.in"
       alias tb="nc termbin.com 9999"
     '';
