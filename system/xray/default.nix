@@ -2,7 +2,6 @@
 {
   age = {
     secrets.xray = {
-      name = "xray.json";
       file = ../../secrets/xray.age;
     };
     identityPaths = [ "/root/.ssh/secrets" ];

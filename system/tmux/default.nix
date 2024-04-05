@@ -9,11 +9,10 @@
     terminal = "tmux-256color";
     newSession = true;
     extraConfig = ''
-      set -ga terminal-overrides 'foot:Tc'
+      set-option -sa terminal-features \',xterm-kitty:RGB\'
       set -g set-titles on
       setw -g pane-base-index 1
       set -g mouse on
-      set-option -sa terminal-features \',xterm-kitty:RGB\'
       new -d -s $USER
       bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'wl-copy'
       set -g base-index 1

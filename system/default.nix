@@ -7,6 +7,8 @@
       ./tmux
       ./neovim
       ./xray
+      ./proxychains
+      ./gnome
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -21,12 +23,7 @@
     opengl = {
       enable = true;
       driSupport32Bit = true;
-      extraPackages = with pkgs; [
-        intel-media-driver
-      ];
     };
-
-    opentabletdriver.enable = true;
 
     bluetooth = {
       enable = true;
@@ -41,12 +38,6 @@
       open = false; # sadly
       nvidiaSettings = false;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
-
-      prime = {
-        sync.enable = true;
-        intelBusId = "PCI:0:2:0";
-        nvidiaBusId = "PCI:1:0:0";
-      };
     };
   };
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -58,23 +49,32 @@
   };
 
   # i really hate mail ru lmao
-  # also love playing shitty chineese gacha games
-  networking.extraHosts = ''
-    0.0.0.0 ok.ru
-    0.0.0.0 api.ok.ru
-    0.0.0.0 r.mail.ru
-    0.0.0.0 mail.ru
-    0.0.0.0 api.mail.ru
-    
-    0.0.0.0 sg-public-data-api.hoyoverse.com
-    0.0.0.0 log-upload-os.hoyoverse.com
-    0.0.0.0 overseauspider.yuanshen.com
-    0.0.0.0 public-data-api.mihoyo.com
-    0.0.0.0 log-upload.mihoyo.com
-    0.0.0.0 uspider.yuanshen.com
-    0.0.0.0 osuspider.yuanshen.com
-    0.0.0.0 ys-log-upload-os.hoyoverse.com
-  '';
+  networking.hosts = {
+    "0.0.0.0" = [
+      "ok.ru"
+      "api.ok.ru"
+      "r.mail.ru"
+      "mail.ru"
+      "api.mail.ru"
+
+      "overseauspider.yuanshen.com"
+      "log-upload-os.hoyoverse.com"
+      "log-upload-os.mihoyo.com"
+      "dump.gamesafe.qq.com"
+
+      "log-upload.mihoyo.com"
+      "devlog-upload.mihoyo.com"
+      "uspider.yuanshen.com"
+      "sg-public-data-api.hoyoverse.com"
+      "public-data-api.mihoyo.com"
+
+      "prd-lender.cdp.internal.unity3d.com"
+      "thind-prd-knob.data.ie.unity3d.com"
+      "thind-gke-usc.prd.data.corp.unity3d.com"
+      "cdp.cloud.unity3d.com"
+      "remote-config-proxy-prd.uca.cloud.unity3d.com"
+    ];
+  };
 
   time.timeZone = "Europe/Moscow";
   i18n = {
@@ -82,6 +82,7 @@
     supportedLocales = [ "en_US.UTF-8/UTF-8" "ru_RU.UTF-8/UTF-8" ];
     extraLocaleSettings = {
       LC_ALL = "en_US.UTF-8";
+      LANG = "en_US.UTF-8";
     };
   };
 
@@ -94,8 +95,8 @@
     fontconfig = {
       defaultFonts = {
         serif = [ "monocraft" ];
-	      sansSerif = [ "monocraft" ];
-	      monospace = [ "monocraft" ];
+        sansSerif = [ "monocraft" ];
+        monospace = [ "monocraft" ];
       };
     };
   };
@@ -104,8 +105,8 @@
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
-      substituters = [ "https://hyprland.cachix.org" ]; # this needed to not build hyprland package and its dependencies
-      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+      substituters = [ "https://hyprland.cachix.org" ];
+      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
     };
     gc = {
       automatic = true;
@@ -115,18 +116,24 @@
     optimise.automatic = true;
   };
 
-  environment.interactiveShellInit = ''
-    export EDITOR=nvim
-  '';
+  environment = {
+    interactiveShellInit = ''
+      export EDITOR=nvim
+    '';
 
-  xdg.portal= {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-    ];
-    config.common.default = "hyprland";
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+    };
   };
+
+# xdg.portal= {
+#   enable = true;
+#   wlr.enable = true;
+#   extraPortals = with pkgs; [
+#     xdg-desktop-portal-gtk
+#   ];
+#   config.common.default = "hyprland";
+# };
 
   users.users.ayako = {
     isNormalUser = true;
@@ -173,23 +180,28 @@
       enable = true;
       enableSSHSupport = true;
     };
+    firejail = {
+      enable = true;
+    };
     fish.enable = true;
+    gamescope = {
+      enable = true;
+#     capSysNice = true; # broken? atleast require program penetration
+    };
     gamemode.enable = true;
     steam = {
       package = pkgs.steam.override {
-        extraEnv = {
-          DRI_PRIME = "1";
-        };
         extraPkgs = pkgs: with pkgs; [
           mangohud
         ];
+        extraBwrapArgs = [
+          "--bind $HOME/steamhome $HOME"
+          "--bind $HOME/Games/Steam $HOME/.local/share/Steam"
+        ];
       };
       enable = true;
+      gamescopeSession.enable = true;
     };
-    # should be very concerned about this thing tho
-    # it manages SYS_CAP_RESOURCE
-    # probably want to move away to self-written rnnoise
-    noisetorch.enable = true;
   };
 
   services = {

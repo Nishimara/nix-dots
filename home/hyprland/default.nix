@@ -134,7 +134,7 @@
         "$mod, I, exec, kitty"
         "$mod, Q, killactive,"
         "$mod SHIFT, Q, exit,"
-        "$mod, E, exec, thunar"
+        "$mod, E, exec, nautilus"
         "$mod, V, toggleFloating,"
         "$mod, P, pseudo," #dwindle
         "$mod, J, togglesplit," #dwindle

@@ -17,16 +17,7 @@
 	      };
       };
 
-      nvim-cmp = {
-        enable = true;
-
-        sources = [
-          { name = "nvim_lsp"; }
-          { name = "treebuffer"; }
-          { name = "path"; }
-          { name = "buffer"; }
-        ];
-      };
+      cmp.enable = true;
 
       nix.enable = true;
       treesitter.enable = true;
@@ -35,7 +26,7 @@
       illuminate.enable = true;
       nvim-colorizer.enable = true;
       auto-session.enable = true;
-      comment-nvim.enable = true;
+      comment.enable = true;
     };
   };
 }
