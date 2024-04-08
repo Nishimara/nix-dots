@@ -23,9 +23,6 @@
 
   environment.systemPackages = with pkgs.gnome; [
     gnome-tweaks
-  ] ++ [
-    pkgs.gnomeExtensions.appindicator
-    pkgs.gnomeExtensions.easyeffects-preset-selector
   ];
 
   services.udev.packages = with pkgs; [
