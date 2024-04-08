@@ -176,6 +176,7 @@
 
   programs = {
     adb.enable = true;
+    droidcam.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;

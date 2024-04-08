@@ -13,6 +13,7 @@
     ./mako
     ./swaylock
     ./vsc
+    ./dconf
   ];
 
   programs = {
@@ -42,19 +43,11 @@
     };
   };
 
-  dconf = {
-    enable = true;
-    settings."org/gnome/desktop/interface" = {
-      color-scheme = "preferer-dark";
-    };
-  };
-
   home.packages = with pkgs; [
     # development
     gnumake
     clang
     clang-tools
-    python3Full
 
     # gui
     hyprpaper
@@ -93,7 +86,6 @@
     fd # user-friendly find
     wl-clipboard
     btop # amazing top
-    wineWowPackages.waylandFull
 
     # misc
     yt-dlp
