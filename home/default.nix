@@ -14,11 +14,13 @@
     ./swaylock
     ./vsc
     ./dconf
+    ./yt-dlp
   ];
 
   programs = {
     home-manager.enable = true;
     obs-studio.enable = true;
+    mpv.enable = true;
   };
 
   services = {
@@ -88,7 +90,6 @@
     btop # amazing top
 
     # misc
-    yt-dlp
     man-pages
     playerctl # control media
     mindustry-wayland # ahh games

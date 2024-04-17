@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs.gnomeExtensions; [
+    appindicator
     pip-on-top
     dash-to-dock
     media-controls
