@@ -11,13 +11,14 @@
       ./gnome
     ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.tmp = {
-    useTmpfs = true;
-    cleanOnBoot = true;
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    tmp = {
+      useTmpfs = true;
+      cleanOnBoot = true;
+    };
   };
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   hardware = {
     opengl = {
@@ -41,6 +42,14 @@
     };
   };
   services.xserver.videoDrivers = [ "nvidia" ];
+
+  # with nvidia it's forbidden to sleep
+  systemd.targets = {
+    sleep.enable = false;
+    suspend.enable = false;
+    hibernate.enable = false;
+    hybrid-sleep.enable = false;
+  };
 
   networking = {
     hostName = "nixos";
@@ -181,9 +190,7 @@
       enable = true;
       enableSSHSupport = true;
     };
-    firejail = {
-      enable = true;
-    };
+    firejail.enable = true;
     fish.enable = true;
     gamescope = {
       enable = true;
@@ -248,7 +255,7 @@
     doas.enable = true;
     sudo.enable = false;
     doas.extraRules = [{
-      groups = ["wheel"];
+      groups = [ "wheel" ];
       persist = true;
     }];
   };

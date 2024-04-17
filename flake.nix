@@ -40,7 +40,6 @@
       ];
       specialArgs = { inherit inputs; };
     };
-    defaultPackage.${system} = home-manager.defaultPackage.${system};
 
     homeConfigurations."ayako" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
