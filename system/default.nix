@@ -18,6 +18,7 @@
       useTmpfs = true;
       cleanOnBoot = true;
     };
+    kernelPackages = pkgs.linuxPackages_zen;
   };
 
   hardware = {
@@ -97,16 +98,35 @@
 
   fonts = { 
     packages = with pkgs; [
-      nerdfonts
+      jetbrains-mono
+      noto-fonts
+      (nerdfonts.override {
+        fonts = [
+          "NerdFontsSymbolsOnly"
+          "Hack"
+        ];
+      })
       monocraft
+
+      # unicode
+      unifont
     ];
 
-    fontconfig = {
-      defaultFonts = {
-        serif = [ "monocraft" ];
-        sansSerif = [ "monocraft" ];
-        monospace = [ "monocraft" ];
-      };
+    fontconfig.defaultFonts = {
+      serif = [
+        "Noto Serif"
+        "Symbols Nerd Font"
+      ];
+      sansSerif = [
+        "Noto Sans"
+        "Symbols Nerd Font"
+      ];
+      monospace = [
+        "Hack Nerd Font Mono"
+        "JetBrains Mono NL Light"
+        "Symbols Nerd Font Mono"
+        "Monocraft"
+      ];
     };
   };
 
@@ -115,7 +135,7 @@
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
       substituters = [ "https://hyprland.cachix.org" ];
-      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
     };
     gc = {
       automatic = true;
@@ -125,24 +145,9 @@
     optimise.automatic = true;
   };
 
-  environment = {
-    interactiveShellInit = ''
-      export EDITOR=nvim
-    '';
-
-    sessionVariables = {
-      NIXOS_OZONE_WL = "1";
-    };
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
   };
-
-# xdg.portal= {
-#   enable = true;
-#   wlr.enable = true;
-#   extraPortals = with pkgs; [
-#     xdg-desktop-portal-gtk
-#   ];
-#   config.common.default = "hyprland";
-# };
 
   users.users.ayako = {
     isNormalUser = true;
@@ -201,7 +206,23 @@
       package = pkgs.steam.override {
         extraPkgs = pkgs: with pkgs; [
           mangohud
+
+          # needed for gamescope
+          xorg.libXcursor
+          xorg.libXi
+          xorg.libXinerama
+          xorg.libXScrnSaver
+          libpng
+          libpulseaudio
+          libvorbis
+          stdenv.cc.cc.lib
+          libkrb5
+          keyutils
         ];
+        extraEnv = {
+          # support cyrillic symbols
+          LANG = "ru_RU.UTF-8";
+        };
         extraBwrapArgs = [
           "--bind $HOME/steamhome $HOME"
           "--bind $HOME/Games/Steam $HOME/.local/share/Steam"
