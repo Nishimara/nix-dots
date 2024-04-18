@@ -15,6 +15,7 @@
     ./vsc
     ./dconf
     ./yt-dlp
+    ./eza
   ];
 
   programs = {
@@ -84,7 +85,6 @@
     pamixer # pulseaudio control
     ranger # file manager in terminal
     grc # needed for fish colorizing plugin
-    eza # colorful ls
     fd # user-friendly find
     wl-clipboard
     btop # amazing top
