@@ -9,6 +9,7 @@
       ./xray
       ./proxychains
       ./gnome
+      ./nvidia
     ];
 
   boot = {
@@ -22,34 +23,10 @@
   };
 
   hardware = {
-    opengl = {
-      enable = true;
-      driSupport32Bit = true;
-    };
-
     bluetooth = {
       enable = true;
       powerOnBoot = true;
     };
-
-    # proud nvidia user
-    nvidia = {
-      modesetting.enable = true;
-      powerManagement.enable = false;
-      powerManagement.finegrained = false;
-      open = false; # sadly
-      nvidiaSettings = false;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
-  };
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  # with nvidia it's forbidden to sleep
-  systemd.targets = {
-    sleep.enable = false;
-    suspend.enable = false;
-    hibernate.enable = false;
-    hybrid-sleep.enable = false;
   };
 
   networking = {
