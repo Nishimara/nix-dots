@@ -23,7 +23,7 @@ let
   profile-name = "alpha";
 in {
   programs.firefox = {
-    package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
+    package = pkgs.firefox.override {
       extraPolicies = {
         DisablePocket = true;
         DisableFirefoxAccounts = true;
