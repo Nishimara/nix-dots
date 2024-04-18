@@ -8,6 +8,12 @@
       key = "/home/ayako/.ssh/gitsign.pub";
       signByDefault = true;
     };
+
+    difftastic = {
+      enable = true;
+      background = "dark";
+    };
+
     extraConfig = {
       init = {
         defaultBranch = "main";
@@ -17,4 +23,6 @@
       };
     };
   };
+
+  programs.lazygit.enable = true;
 }
