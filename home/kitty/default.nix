@@ -4,7 +4,6 @@
     enable = true;
     settings = {
       include = "${./mocha.conf}";
-      linux_display_server="x11"; # wayland broken with nvidia
       mouse_hide_wait = "2.0";
       font_family = "jetbrains mono nerd font";
       font_size = 14;
