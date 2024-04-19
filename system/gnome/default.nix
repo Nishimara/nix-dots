@@ -35,16 +35,18 @@
     config.common.default = "gnome";
   };
 
-  services.xserver = {
-    enable = true;
-    displayManager = {
-      gdm = {
-        enable = true;
-        wayland = true;
-      };
-      sessionPackages = [ inputs.hyprland.packages.${pkgs.system}.hyprland ];
-    };  
-    desktopManager.gnome.enable = true;
-    excludePackages = with pkgs; [ xterm ];
+  services = {
+    xserver = {
+      enable = true;
+      displayManager = {
+        gdm = {
+          enable = true;
+          wayland = true;
+        };
+      };  
+      desktopManager.gnome.enable = true;
+      excludePackages = with pkgs; [ xterm ];
+    };
+    displayManager.sessionPackages = [ inputs.hyprland.packages.${pkgs.system}.hyprland ];
   };
 }
