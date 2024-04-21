@@ -2,6 +2,24 @@
 {
   programs.nixvim = {
     enable = true;
+    
+    opts = {
+      number = true;
+      relativenumber = true;
+
+      shiftwidth = 4;
+      tabstop = 4;
+      smartindent = true;
+      expandtab = true;
+    };
+
+    files = {
+      "ftplugin/json.lua".opts = {
+        shiftwidth = 2;
+        tabstop = 2;
+      };
+    };
+
     plugins = {
       lsp = {
         enable = true;
