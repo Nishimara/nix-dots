@@ -1,4 +1,4 @@
-{ system, pkgs, config, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./waybar
@@ -51,6 +51,8 @@
     gnumake
     clang
     clang-tools
+    nil
+    nixpkgs-fmt
 
     # gui
     hyprpaper
