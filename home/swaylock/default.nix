@@ -3,6 +3,7 @@
   programs.swaylock = {
     enable = true;
     package = pkgs.swaylock-effects;
+
     settings = {
       daemonize = true;
       show-failed-attempts = true;

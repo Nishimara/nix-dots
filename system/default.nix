@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports =
@@ -271,7 +271,6 @@
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 22 ];
     allowedTCPPortRanges = [
       { from = 1714; to = 1764; } # KDE connect
     ];
