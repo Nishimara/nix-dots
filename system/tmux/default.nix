@@ -1,13 +1,15 @@
-{ pkgs, ...}:
+{ ... }:
 {
   programs.tmux = {
     enable = true;
+
     baseIndex = 1;
     clock24 = false;
     escapeTime = 10;
     historyLimit = 10000;
     terminal = "tmux-256color";
     newSession = true;
+
     extraConfig = ''
       set-option -sa terminal-features \',xterm-kitty:RGB\'
       set -g set-titles on
