@@ -1,16 +1,7 @@
 { pkgs, inputs, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./tmux
-      ./neovim
-      ./xray
-      ./proxychains
-      ./gnome
-      ./nvidia
-    ];
+  imports = [ ./bundle.nix ];
 
   boot = {
     loader.systemd-boot.enable = true;
