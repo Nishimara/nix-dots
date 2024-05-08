@@ -49,6 +49,8 @@
     libnotify
     keepassxc # password manager
     qbittorrent
+    gpu-screen-recorder
+    gpu-screen-recorder-gtk
     gnome.eog # image viewer
     gnome.nautilus # file manager
     (lutris-free.override {
@@ -65,20 +67,31 @@
       ];
     }) # yay windows games (dont forget bubblewrap for them)
     spotube # spotify without electron wow
+    (syncplay.overrideAttrs {
+      version = "1.7.2";
+      src = pkgs.fetchFromGitHub {
+        owner = "Syncplay";
+        repo = "syncplay";
+        rev = "v1.7.2";
+        sha256 = "sha256-PERPE6141LXmb8fmW17Vu54Unpf9vEK+ahm6q1byRTU=";
+      };
+      patches = [];
+    })
 
     # tools
+    btop # amazing top
     file
+    fd # user-friendly find
+    grc # needed for fish colorizing plugin
     pamixer # pulseaudio control
     ranger # file manager in terminal
-    grc # needed for fish colorizing plugin
-    fd # user-friendly find
     wl-clipboard
-    btop # amazing top
 
     # misc
+    cmus # music
     man-pages
-    playerctl # control media
     mindustry-wayland # ahh games
+    playerctl # control media
   ];
 
   home.stateVersion = "24.05";
