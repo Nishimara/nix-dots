@@ -12,17 +12,17 @@
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
+      cursor-theme = "Adwaita";
     };
     "org/gnome/shell" = {
       enabled-extensions = [
-        "auto-move-windows@gnome-shell-extensions.gcampax.github.com"
-        "rounded-window-corners@yilozt"
-        "pip-on-top@rafostar.github.com"
-        "dash-to-dock@micxgx.gmail.com"
-        "unredirect@vaina.lt"
-        "mediacontrols@cliffniff.github.com"
-        "eepresetselector@ulville.github.io"
         "appindicatorsupport@rgcjonas.gmail.com"
+        "auto-move-windows@gnome-shell-extensions.gcampax.github.com"
+        "dash-to-dock@micxgx.gmail.com"
+        "mediacontrols@cliffniff.github.com"
+        "pip-on-top@rafostar.github.com"
+        "rounded-window-corners@yilozt"
+        "unredirect@vaina.lt"
 #       "user-theme@gnome-shell-extensions.gcampax.github.com"
       ];
     };
@@ -35,7 +35,11 @@
       package = pkgs.papirus-icon-theme;
     };
 
-    gtk3.extraConfig.Settings = "gtk-application-prefer-dark-theme=1";
-    gtk4.extraConfig.Settings = "gtk-application-prefer-dark-theme=1";
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
   };
 }

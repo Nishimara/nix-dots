@@ -24,7 +24,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, agenix, nixvim, hyprland, firefox-addons }@inputs: 
+  outputs = { self, nixpkgs, home-manager, agenix, nixvim, hyprland, firefox-addons }@inputs:
   let
     system = "x86_64-linux";
 
