@@ -23,7 +23,26 @@
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
-    nameservers = [ "1.1.1.1" "1.0.0.1" ];
+    nameservers = [ "127.0.0.1" "::1" ];
+    dhcpcd.extraConfig = "nohook resolv.conf";
+    networkmanager.dns = "none";
+  };
+
+  services.dnscrypt-proxy2 = {
+    enable = true;
+    settings = {
+      ipv6_servers = true;
+      require_dnssec = true;
+
+      sources.public-resolvers = {
+        urls = [
+          "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md"
+          "https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md"
+        ];
+        cache_file = "/var/lib/dnscrypt-proxy/public-resolvers.md";
+        minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
+      };
+    };
   };
 
   # i really hate mail ru lmao
@@ -154,6 +173,7 @@
     "steam-original"
     "steam-run"
     "nvidia-x11"
+    "zerotierone"
   ];
 
   programs = {
@@ -203,20 +223,23 @@
 
   services = {
     blueman.enable = true;
-    openssh.enable = true;
+    openssh = {
+      enable = true;
+      settings.PasswordAuthentication = false;
+    };
     fail2ban = {
       enable = true;
-      maxretry= 3;
+      maxretry = 3;
       bantime = "168h";
     };
     pipewire = {
       enable = true;
       alsa.enable = true;
-      alsa.support32Bit = true;
       pulse.enable = true;
       wireplumber.enable = true;
     };
     udisks2.enable = true;
+    zerotierone.enable = true;
   };
 
   security = {
