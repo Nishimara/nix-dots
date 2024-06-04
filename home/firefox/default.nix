@@ -66,6 +66,7 @@ in {
           "browser.crashReports.unsubmittedCheck.autoSubmit2" = lock-false;
           "browser.crashReports.unsubmittedCheck.enabled" = lock-false;
           "browser.disableResetPrompt" = lock-true;
+          "browser.download.useDownloadDir" = lock-false; # ask user each time where to save downloaded files
           "browser.newtab.preload" = lock-false;
           "browser.newtabpage.activity-stream.feeds.section.topstories" = lock-false;
           "browser.newtabpage.activity-stream.feeds.snippets" = lock-false;
@@ -99,8 +100,8 @@ in {
           "dom.security.https_only_mode_ever_enabled" = lock-true;
           "dom.webaudio.enabled" = lock-false;
           "media.autoplay.default" = lock-1; # 0 for allow and 2 for asking a user on each site
-          "media.eme.enabled" = lock-true; #drm
-          "media.gmp-widevinecdm.enabled" = lock-true; #drm
+          "media.eme.enabled" = lock-false; #drm
+          "media.gmp-widevinecdm.enabled" = lock-false; #drm
           "media.navigator.enabled" = lock-false;
           "media.peerconnection.enabled" = lock-false;
           "media.video_stats.enabled" = lock-false;
@@ -138,7 +139,7 @@ in {
       };
 
       # set some prefs here cuz firefox cannot handle this preferences
-      extraPrefs = ''
+      extraPrefs = /* javascript */ ''
         lockPref("app.update.auto", false);
         lockPref("app.normandy.api_url", "");
         lockPref("app.normandy.enabled", false);
@@ -225,6 +226,18 @@ in {
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAlias = [ "@np" ];
           };
+
+          "MyNixOS" = {
+            urls = [{
+              template = "https://mynixos.com/search";
+              params = [
+                { name = "q"; value = "{searchTerms}"; }
+              ];
+            }];
+            # icon = "";
+            definedAlias = [ "@mn" ];
+          };
+
           "Google".metaData.hidden = true;
           "Amazon.com".metaData.hidden = true;
           "Bing".metaData.hidden = true;
