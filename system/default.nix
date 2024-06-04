@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, lib, inputs, ... }:
 
 {
   imports = [ ./bundle.nix ];
@@ -132,10 +132,6 @@
     optimise.automatic = true;
   };
 
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-  };
-
   users.users.ayako = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" "audio" "video" "input" ];
@@ -168,7 +164,7 @@
     pavucontrol
   ] ++ [ inputs.agenix.packages.${pkgs.system}.default ];
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "steam"
     "steam-original"
     "steam-run"
@@ -227,11 +223,7 @@
       enable = true;
       settings.PasswordAuthentication = false;
     };
-    fail2ban = {
-      enable = true;
-      maxretry = 3;
-      bantime = "168h";
-    };
+    fail2ban.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -272,14 +264,15 @@
     }];
   };
 
-  virtualisation = {
-    oci-containers = {
-      backend = "podman";
-    };
-    podman = {
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+    
+    defaultNetwork.settings.dns_enabled = true;
+
+    autoPrune = {
       enable = true;
-      dockerCompat = true;
-      defaultNetwork.settings.dns_enabled = true;
+      flags = [ "--all" ];
     };
   };
 
