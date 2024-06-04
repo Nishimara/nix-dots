@@ -16,7 +16,7 @@
 
     nixvim.url = "github:nix-community/nixvim";
 
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
@@ -28,16 +28,7 @@
   let
     system = "x86_64-linux";
 
-    # pin telegram to v4.15.2
-    pkgs = nixpkgs.legacyPackages.${system}.extend (final: prev: {
-      telegram-desktop = (import (builtins.fetchTree {
-        type = "github";
-        owner = "NixOS";
-        repo = "nixpkgs";
-        rev = "3f178e415639bd509b2cb09f9e56b7994f11ed17";
-        narHash = "sha256-1Q0Tk3hBHfZ7RxK1YtcsUMfdUWLhqYCsy6bP1piEVOs=";
-      }) { inherit system; }).pkgs.telegram-desktop;
-    });
+    pkgs = nixpkgs.legacyPackages.${system};
   in {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       inherit system;

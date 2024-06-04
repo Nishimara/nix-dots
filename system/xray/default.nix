@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
   age = {
     secrets.xray = {
@@ -15,6 +15,6 @@
   # dummy way but i don't have any other solutions
   systemd.services.xray.serviceConfig = {
     LoadCredential = "config.json:${config.age.secrets.xray.path}";
-    ExecStart = pkgs.lib.mkForce "${pkgs.xray}/bin/xray -c \${CREDENTIALS_DIRECTORY}/config.json";
+    ExecStart = lib.mkForce "${pkgs.xray}/bin/xray -c \${CREDENTIALS_DIRECTORY}/config.json";
   };
 }
