@@ -66,7 +66,6 @@
         gamescope
       ];
     }) # yay windows games (dont forget bubblewrap for them)
-    spotube # spotify without electron wow
     (syncplay.overrideAttrs {
       version = "1.7.2";
       src = pkgs.fetchFromGitHub {
@@ -79,13 +78,14 @@
     })
 
     # tools
-    btop # amazing top
     file
     fd # user-friendly find
     grc # needed for fish colorizing plugin
     pamixer # pulseaudio control
     ranger # file manager in terminal
+    ripgrep
     wl-clipboard
+    xclip
 
     # misc
     cmus # music

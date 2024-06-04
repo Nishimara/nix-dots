@@ -16,5 +16,7 @@
     ./dconf
     ./yt-dlp
     ./eza
+    ./btop
+    ./starship
   ];
 }
