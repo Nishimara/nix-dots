@@ -24,10 +24,9 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, agenix, nixvim, hyprland, firefox-addons }@inputs:
+  outputs = { nixpkgs, home-manager, agenix, nixvim, hyprland, ... }@inputs:
   let
     system = "x86_64-linux";
-
     pkgs = nixpkgs.legacyPackages.${system};
   in {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
