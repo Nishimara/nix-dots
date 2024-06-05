@@ -54,12 +54,12 @@
     gnome.eog # image viewer
     gnome.nautilus # file manager
     (lutris-free.override {
-      extraLibraries = pkgs: [
+      extraLibraries = _: [
         libadwaita
         pango
         gtk4
       ];
-      extraPkgs = pkgs: [
+      extraPkgs = _: [
         mangohud
         bubblewrap
         gamemode
