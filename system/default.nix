@@ -89,8 +89,8 @@
       noto-fonts
       (nerdfonts.override {
         fonts = [
-          "NerdFontsSymbolsOnly"
           "Hack"
+          "NerdFontsSymbolsOnly"
         ];
       })
       monocraft
