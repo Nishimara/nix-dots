@@ -3,22 +3,26 @@
   hardware.pulseaudio.enable = false;
 
   environment.gnome.excludePackages = (with pkgs; [
+    gedit # gui text editor
     gnome-photos
-    gnome-tour
-    gedit
+    gnome-tour # gnome guide
   ]) ++ (with pkgs.gnome; [
-    cheese
-    gnome-music
-    gnome-terminal
-    epiphany
-    geary
-    evince
+    atomix # game
+    baobab # disk usage analyzer
+    cheese # webcam view
+    epiphany # browser
+    file-roller # archive manager
+    geary # email client
+    hitori # game
+    iagno # game
+    seahorse # password manager
+    totem # video player
+    tali # game
+    yelp # help viewer
+
     gnome-characters
-    totem
-    tali
-    iagno
-    hitori
-    atomix
+    gnome-terminal
+    gnome-music
   ]);
 
   environment.systemPackages = with pkgs.gnome; [
