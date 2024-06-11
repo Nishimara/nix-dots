@@ -74,7 +74,7 @@
           clangd.enable = true;
           tsserver.enable = true;
 
-          nil_ls = {
+          nil-ls = {
             enable = true;
             settings = {
               formatting.command = [ "nixpkgs-fmt" ];
