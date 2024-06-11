@@ -198,13 +198,14 @@ in {
         darkreader
         istilldontcareaboutcookies
         ublock-origin
-        violentmonkey
+        seventv
         user-agent-string-switcher
+        violentmonkey
 
         # missed:
         # * foxyproxy
         # * standart mozilla dark theme
-      ] ++ [ inputs.firefox-addons.packages.${pkgs.system}."7tv" ];
+      ];
 
       # https://github.com/Khalylexe/Firefox-Rounded-Theme
       userContent = builtins.replaceStrings [ "wallpaper.jpg" ] [ "${../../imgs/firefox-wp.jpg}" ] "${builtins.readFile ./userContent.css}";
