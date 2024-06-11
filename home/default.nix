@@ -66,16 +66,6 @@
         gamescope
       ];
     }) # yay windows games (dont forget bubblewrap for them)
-    (syncplay.overrideAttrs {
-      version = "1.7.2";
-      src = pkgs.fetchFromGitHub {
-        owner = "Syncplay";
-        repo = "syncplay";
-        rev = "v1.7.2";
-        sha256 = "sha256-PERPE6141LXmb8fmW17Vu54Unpf9vEK+ahm6q1byRTU=";
-      };
-      patches = [];
-    })
 
     # tools
     file
