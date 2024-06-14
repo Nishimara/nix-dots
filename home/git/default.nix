@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   programs.git = {
     enable = true;
@@ -7,7 +7,7 @@
     userEmail = "admin@abdulakh.fun";
 
     signing = {
-      key = "/home/ayako/.ssh/gitsign.pub";
+      key = "${config.home.homeDirectory}/.ssh/gitsign.pub";
       signByDefault = true;
     };
 
