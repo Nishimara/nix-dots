@@ -208,7 +208,6 @@
       package = pkgs.steam.override {
         extraPkgs = pkgs: with pkgs; [
           mangohud
-
         ];
         extraEnv = {
           # support cyrillic symbols
