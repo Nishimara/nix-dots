@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   hardware.pulseaudio.enable = false;
 
@@ -33,23 +33,11 @@
     gnome.gnome-settings-daemon
   ];
 
-  xdg.portal = {
-    enable = true;
-    config.common.default = "gnome";
-  };
-
   services = {
     xserver = {
       enable = true;
-      displayManager = {
-        gdm = {
-          enable = true;
-          wayland = false;
-        };
-      };  
       desktopManager.gnome.enable = true;
       excludePackages = with pkgs; [ xterm ];
     };
-    displayManager.sessionPackages = [ inputs.hyprland.packages.${pkgs.system}.hyprland ];
   };
 }

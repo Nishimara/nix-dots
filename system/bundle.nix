@@ -6,7 +6,7 @@
     ./neovim
     ./xray
     ./proxychains
-    ./gnome
+#   ./gnome
     ./nvidia
   ];
 }

@@ -4,8 +4,14 @@
   imports = [ ./bundle.nix ];
 
   boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
+    loader = {
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 10;
+        editor = false;
+      };
+      efi.canTouchEfiVariables = true;
+    };
     tmp = {
       useTmpfs = true;
       cleanOnBoot = true;
@@ -77,10 +83,10 @@
   i18n = {
     defaultLocale = "en_US.UTF-8";
     supportedLocales = [ "en_US.UTF-8/UTF-8" "ru_RU.UTF-8/UTF-8" ];
-    extraLocaleSettings = {
-      LC_ALL = "en_US.UTF-8";
-      LANG = "en_US.UTF-8";
-    };
+  };
+
+  console = {
+    font = "Lat2-Terminus16";
   };
 
   fonts = { 
@@ -90,6 +96,7 @@
       (nerdfonts.override {
         fonts = [
           "Hack"
+          "Iosevka"
           "NerdFontsSymbolsOnly"
         ];
       })
@@ -110,6 +117,7 @@
       ];
       monospace = [
         "Hack Nerd Font Mono"
+        "Iosevka Nerd Font Mono"
         "JetBrains Mono NL Light"
         "Symbols Nerd Font Mono"
         "Monocraft"
@@ -130,6 +138,11 @@
       options = "--delete-older-than 30d";
     };
     optimise.automatic = true;
+  };
+
+  xdg.portal = {
+    enable = true;
+    config.common.default = [ "hyprland" ];
   };
 
   users.users.ayako = {
@@ -175,33 +188,27 @@
   programs = {
     adb.enable = true;
     droidcam.enable = true;
+
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
     };
+
     firejail.enable = true;
     fish.enable = true;
+
     gamescope = {
       enable = true;
 #     capSysNice = true; # broken? atleast require program penetration
     };
+
     gamemode.enable = true;
+
     steam = {
       package = pkgs.steam.override {
         extraPkgs = pkgs: with pkgs; [
           mangohud
 
-          # needed for gamescope
-          xorg.libXcursor
-          xorg.libXi
-          xorg.libXinerama
-          xorg.libXScrnSaver
-          libpng
-          libpulseaudio
-          libvorbis
-          stdenv.cc.cc.lib
-          libkrb5
-          keyutils
         ];
         extraEnv = {
           # support cyrillic symbols
@@ -212,6 +219,7 @@
           "--bind $HOME/Games/Steam $HOME/.local/share/Steam"
         ];
       };
+
       enable = true;
       gamescopeSession.enable = true;
     };
@@ -219,17 +227,32 @@
 
   services = {
     blueman.enable = true;
+    
+    greetd = {
+      enable = true;
+
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+          user = "greeter";
+        };
+      };
+    };
+    
     openssh = {
       enable = true;
       settings.PasswordAuthentication = false;
     };
+    
     fail2ban.enable = true;
+    
     pipewire = {
       enable = true;
       alsa.enable = true;
       pulse.enable = true;
       wireplumber.enable = true;
     };
+    
     udisks2.enable = true;
     zerotierone.enable = true;
   };
@@ -256,12 +279,14 @@
       '';
     };
 
-    doas.enable = true;
     sudo.enable = false;
-    doas.extraRules = [{
-      groups = [ "wheel" ];
-      persist = true;
-    }];
+    doas = {
+      enable = true;
+      extraRules = [{
+        groups = [ "wheel" ];
+        persist = true;
+      }];
+    };
   };
 
   virtualisation.podman = {
