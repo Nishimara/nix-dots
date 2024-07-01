@@ -28,6 +28,7 @@
     "/boot" = {
       device = "/dev/disk/by-uuid/E92D-47BE";
       fsType = "vfat";
+      options = [ "umask=077" "nodev" "nosuid" ];
     };
 
     "/home" = {
