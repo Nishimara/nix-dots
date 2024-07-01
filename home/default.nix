@@ -3,6 +3,7 @@
   imports = [ ./bundle.nix ];
 
   programs = {
+    feh.enable = true;
     home-manager.enable = true;
     obs-studio.enable = true;
     mpv.enable = true;
@@ -45,7 +46,6 @@
     gimp
     prismlauncher # minecraft
     vesktop # discord with vencord
-    feh # image viewing tool
     libnotify
     keepassxc # password manager
     qbittorrent
