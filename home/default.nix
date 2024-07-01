@@ -80,7 +80,7 @@
     # misc
     cmus # music
     man-pages
-    mindustry-wayland # ahh games
+#   mindustry-wayland # ahh games
     playerctl # control media
   ];
 
