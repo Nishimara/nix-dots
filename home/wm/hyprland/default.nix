@@ -1,7 +1,14 @@
 { pkgs, ... }:
 {
+  imports = [
+    ./mako
+    ./swaylock
+    ./waybar
+    ./wofi
+  ];
+
   wayland.windowManager.hyprland = {
-    enable = false;
+    enable = true;
 
     settings = {
       "$mod" = "SUPER";
@@ -10,7 +17,6 @@
 
       env = [
         "MOZ_ENABLE_WAYLAND,1"
-        "_JAVA_AWT_WM_NONREPARENTING,1"
         "GDK_BACKEND,wayland"
         "NIXOS_OZONE_WL,1"
         "QT_QPA_PLATFORM,wayland-egl"
@@ -31,12 +37,13 @@
       ];
 
       exec-once = [
-        "${pkgs.hyprpaper}/bin/hyprpaper"
-        "${pkgs.mako}/bin/mako"
-        "${pkgs.waybar}/bin/waybar"
-        "firefox" # run from env cuz otherwise its blind for user configuration
-        "${pkgs.telegram-desktop}/bin/telegram-desktop"
-        "${pkgs.vesktop}/bin/vesktop" # it may kill a wm with gpu (nvidia)
+        "hyprpaper"
+        "mako"
+        "waybar"
+        "[workspace 1 silent] firefox"
+        "[workspace 2 silent] telegram-desktop"
+        "[workspace 3 silent] kitty"
+        "[workspace 4 silent] vesktop"
         "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
       ];
 
@@ -107,10 +114,16 @@
 
       windowrulev2 = [
         "float, class:^(org.kde.polkit-kde-authentication-agent-1)$"
+
         "float, class:^(org.telegram.desktop|telegramdesktop)$,title:^(Media viewer)$"
         "fullscreen, class:^(org.telegram.desktop|telegramdesktop)$,title:^(Media viewer)$"
+
+        "workspace 4, class:vesktop"
         "float, class:^(vesktop)$,initialTitle:^(Discord Popout)$"
         "float, class:^(firefox)$,title:^(Picture-in-Picture)$"
+
+        "float, class:^(steam)$,title:^(Screenshot Manager)$"
+        "float, class:^(steam)$,title:^(Friends List)$"
 
 #       "immediate, fullscreen:1"
       ];
@@ -138,9 +151,9 @@
         "$mod, V, toggleFloating,"
         "$mod, P, pseudo," #dwindle
         "$mod, J, togglesplit," #dwindle
-        "CTRL, Print, exec, grimblast --notify copysave area \"$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\\ %H-%M-%S).png\""
-        ", Print, exec, grimblast --notify copysave output \"$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\\ %H-%M-%S).png\""
-        "$mod, L, exec, swaylock -e -i ${../../imgs/screenlock.png}"
+        "CTRL, Print, exec, grimblast --notify copysave output \"$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\\ %H-%M-%S).png\""
+        ", Print, exec, grimblast --notify --freeze copysave area \"$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\\ %H-%M-%S).png\""
+        "$mod, L, exec, swaylock -e -i ${../../../imgs/screenlock.png}"
         ", F8, exec, amixer set Capture toggle && bash ${./notify-mic-status.sh}"
 
         "$mod, left, movefocus, l"
@@ -175,9 +188,9 @@
   };
 
   xdg.configFile."hypr/hyprpaper.conf".text = ''
-    preload = ${../../imgs/wallpaper.jpg}
+    preload = ${../../../imgs/wallpaper.jpg}
 
-    wallpaper = ,${../../imgs/wallpaper.jpg}
+    wallpaper = ,${../../../imgs/wallpaper.jpg}
     ipc = off
   '';
 }
