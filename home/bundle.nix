@@ -14,5 +14,6 @@
     ./eza
     ./btop
     ./starship
+    ./foot
   ];
 }
