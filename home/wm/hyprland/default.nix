@@ -1,4 +1,15 @@
 { pkgs, ... }:
+let
+  notify-mic-status = pkgs.writeShellScriptBin "notify-mic-status" ''
+    mic_status=$(amixer get Capture | awk '/\[on\]/{print $6; exit}')
+
+    if [ "$mic_status" == "[on]" ]; then
+      notify-send "Mic unmuted"
+    else
+      notify-send "Mic muted"
+    fi
+  '';
+in
 {
   imports = [
     ./mako
@@ -149,8 +160,8 @@
         "$mod, J, togglesplit," #dwindle
         "CTRL, Print, exec, grimblast --notify copysave output \"$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\\ %H-%M-%S).png\""
         ", Print, exec, grimblast --notify --freeze copysave area \"$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\\ %H-%M-%S).png\""
-        "$mod, L, exec, swaylock -e -i ${../../../imgs/screenlock.png}"
-        ", F8, exec, amixer set Capture toggle && bash ${./notify-mic-status.sh}"
+        "$mod, L, exec, swaylock -e"
+        ", F8, exec, amixer set Capture toggle && ${notify-mic-status}/bin/notify-mic-status"
 
         "$mod, left, movefocus, l"
         "$mod, right, movefocus, r"
