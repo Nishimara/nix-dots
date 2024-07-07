@@ -42,7 +42,7 @@
         "waybar"
         "[workspace 1 silent] firefox"
         "[workspace 2 silent] telegram-desktop"
-        "[workspace 3 silent] kitty"
+        "[workspace 3 silent] foot"
         "[workspace 4 silent] vesktop"
         "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
       ];
