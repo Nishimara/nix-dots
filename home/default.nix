@@ -18,6 +18,11 @@
     mpris-proxy.enable = true; # control audio via bluetooth headphones buttons
   };
 
+  nix.gc = {
+    automatic = true;
+    options = "-d";
+  };
+
   home = {
     username = "ayako";
     homeDirectory = "/home/ayako";
@@ -75,7 +80,6 @@
     ranger # file manager in terminal
     ripgrep
     wl-clipboard
-    xclip
 
     # misc
     cmus # music
