@@ -26,9 +26,15 @@
   home = {
     username = "ayako";
     homeDirectory = "/home/ayako";
+
     sessionVariables = {
       EDITOR = "nvim";
+
+      # for gamescope
+      XKB_DEFAULT_LAYOUT = "us,ru";
+      XKB_DEFAULT_OPTIONS = "grp:lalt_lshift_toggle";
     };
+
     pointerCursor = {
       name = "Adwaita";
       size = 16;
