@@ -22,7 +22,7 @@
     "/" = {
       device = "/dev/disk/by-uuid/6b777328-7a9f-4993-9975-dbf108f9bbb9";
       fsType = "btrfs";
-      options = [ "subvol=@" "ssd" ];
+      options = [ "subvol=@" "ssd" "compress=zstd" ];
     };
 
     "/boot" = {
