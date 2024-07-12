@@ -68,7 +68,9 @@
       "log-upload.mihoyo.com"
       "devlog-upload.mihoyo.com"
       "uspider.yuanshen.com"
+      "osuspider.yuanshen.com"
       "sg-public-data-api.hoyoverse.com"
+      "ys-log-upload-os.hoyoverse.com"
       "public-data-api.mihoyo.com"
 
       "prd-lender.cdp.internal.unity3d.com"
@@ -129,8 +131,16 @@
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
-      substituters = [ "https://hyprland.cachix.org" ];
-      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+
+      substituters = [
+        "https://hyprland.cachix.org"
+        "https://nix-gaming.cachix.org"
+      ];
+
+      trusted-public-keys = [
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+        "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+      ];
     };
     gc = {
       automatic = true;
@@ -175,6 +185,9 @@
     killall
     xdg-utils
     pavucontrol
+    bubblewrap
+    mangohud
+    wl-clipboard
   ] ++ [ inputs.agenix.packages.${pkgs.system}.default ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
@@ -199,7 +212,7 @@
 
     gamescope = {
       enable = true;
-#     capSysNice = true; # broken? atleast require program penetration
+#     capSysNice = true;
     };
 
     gamemode.enable = true;
@@ -301,6 +314,7 @@
 
   networking.firewall = {
     enable = true;
+    allowedTCPPorts = [ 25565 ];
     allowedTCPPortRanges = [
       { from = 1714; to = 1764; } # KDE connect
     ];
