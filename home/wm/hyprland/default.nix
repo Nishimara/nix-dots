@@ -151,7 +151,7 @@ in
       ];
 
       bind = [
-        "$mod, I, exec, kitty"
+        "$mod, I, exec, foot"
         "$mod, Q, killactive,"
         "$mod SHIFT, Q, exit,"
         "$mod, E, exec, nautilus"
