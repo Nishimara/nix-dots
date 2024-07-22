@@ -16,6 +16,7 @@ in
     ./swaylock
     ./waybar
     ./wofi
+    ./hypridle
   ];
 
   wayland.windowManager.hyprland = {
@@ -56,6 +57,8 @@ in
         "[workspace 3 silent] foot"
         "[workspace 4 silent] vesktop"
         "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
+
+        "tmux setenv -g HYPRLAND_INSTANCE_SIGNATURE \"$HYPRLAND_INSTANCE_SIGNATURE\""
       ];
 
       input = {
