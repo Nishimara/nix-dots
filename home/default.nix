@@ -83,7 +83,6 @@
     fd # user-friendly find
     grc # needed for fish colorizing plugin
     pamixer # pulseaudio control
-    ranger # file manager in terminal
     ripgrep
     wl-clipboard
 

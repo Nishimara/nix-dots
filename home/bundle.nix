@@ -15,5 +15,6 @@
     ./btop
     ./starship
     ./foot
+    ./yazi
   ];
 }
