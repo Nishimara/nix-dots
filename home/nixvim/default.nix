@@ -107,7 +107,9 @@
       treesitter = {
         enable = true;
         nixvimInjections = true;
-        indent = true;
+        settings = {
+          indent.enable = true;
+        };
       };
     };
   };

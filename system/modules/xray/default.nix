@@ -1,12 +1,5 @@
 { config, pkgs, lib, ... }:
 {
-  age = {
-    secrets.xray = {
-      file = ../../secrets/xray.age;
-    };
-    identityPaths = [ "/root/.ssh/secrets" ];
-  };
-
   services.xray = {
     enable = true;
     settingsFile = config.age.secrets.xray.path;

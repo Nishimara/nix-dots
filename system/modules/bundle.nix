@@ -1,12 +1,12 @@
 { ... }:
 {
   imports = [
-    ./hardware-configuration.nix
+    ./age
     ./tmux
     ./neovim
     ./xray
     ./proxychains
-#   ./gnome
+    ./gnome
     ./nvidia
   ];
 }
