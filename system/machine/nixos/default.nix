@@ -1,7 +1,12 @@
 { pkgs, lib, inputs, ... }:
 
 {
-  imports = [ ./bundle.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ../../modules/bundle.nix
+  ];
+
+  modules.nvidia.enable = true;
 
   boot = {
     loader = {
@@ -270,6 +275,7 @@
 
   security = {
     pam.services.swaylock = {};
+    pam.services.hyprlock = {};
 
     polkit = {
       enable = true;

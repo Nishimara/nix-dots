@@ -22,9 +22,14 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, agenix, nixvim, hyprland, ... }@inputs:
+  outputs = { nixpkgs, home-manager, agenix, nixvim, hyprland, lanzaboote, ... }@inputs:
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
@@ -33,12 +38,24 @@
       inherit system;
 
       modules = [
-        ./system
+        ./system/machine/nixos
 
         hyprland.nixosModules.default {
           programs.hyprland.enable = true; #needed in system and in user configurations
         }
 
+        agenix.nixosModules.default
+      ];
+
+      specialArgs = { inherit inputs; };
+    };
+
+    nixosConfigurations.thinkpad = nixpkgs.lib.nixosSystem {
+      inherit system;
+
+      modules = [
+        ./system/machine/thinkpad
+        lanzaboote.nixosModules.lanzaboote
         agenix.nixosModules.default
       ];
 

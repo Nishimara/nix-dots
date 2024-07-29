@@ -5,7 +5,15 @@
   programs = {
     feh.enable = true;
     home-manager.enable = true;
-    obs-studio.enable = true;
+    obs-studio = {
+      enable = true;
+      plugins = with pkgs.obs-studio-plugins; [
+        wlrobs
+        obs-vkcapture
+        obs-pipewire-audio-capture
+        obs-vaapi
+      ];
+    };
     mpv.enable = true;
   };
 
@@ -38,7 +46,7 @@
     pointerCursor = {
       name = "Adwaita";
       size = 16;
-      package = pkgs.gnome3.adwaita-icon-theme;
+      package = pkgs.adwaita-icon-theme;
     };
   };
 
@@ -62,8 +70,8 @@
     qbittorrent
     gpu-screen-recorder
     gpu-screen-recorder-gtk
-    gnome.eog # image viewer
-    gnome.nautilus # file manager
+    eog # image viewer
+    nautilus # file manager
     (lutris-free.override {
       extraLibraries = _: [
         libadwaita
