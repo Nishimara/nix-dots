@@ -24,6 +24,46 @@
 
   time.timeZone = "Europe/Moscow";
 
+  console = {
+    font = "Lat2-Terminus16";
+  };
+
+  fonts = { 
+    packages = with pkgs; [
+      jetbrains-mono
+      noto-fonts
+      (nerdfonts.override {
+        fonts = [
+          "Hack"
+          "Iosevka"
+          "NerdFontsSymbolsOnly"
+        ];
+      })
+      monocraft
+
+      # unicode
+      unifont
+    ];
+
+    fontconfig.defaultFonts = {
+      serif = [
+        "Noto Serif"
+        "Symbols Nerd Font"
+      ];
+      sansSerif = [
+        "Noto Sans"
+        "Symbols Nerd Font"
+      ];
+      monospace = [
+        "Hack Nerd Font Mono"
+        "Iosevka Nerd Font Mono"
+        "JetBrains Mono NL Light"
+        "Symbols Nerd Font Mono"
+        "Monocraft"
+      ];
+    };
+  };
+
   i18n = {
     defaultLocale = "en_US.UTF-8";
 
