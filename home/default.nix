@@ -65,6 +65,7 @@
     gimp
     prismlauncher # minecraft
     vesktop # discord with vencord
+    librewolf
     libnotify
     keepassxc # password manager
     qbittorrent
