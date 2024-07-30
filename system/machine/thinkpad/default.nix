@@ -15,6 +15,8 @@
       enable = true;
       pkiBundle = "/etc/secureboot";
     };
+
+    tmp.cleanOnBoot = true;
   };
 
   networking = {
@@ -95,27 +97,39 @@
     optimise.automatic = true;
   };
 
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
+  services = {
+    xserver.xkb = {
+      layout = "us";
+      variant = "";
+    };
 
-  services.displayManager = {
-    defaultSession = "gnome";
-    autoLogin = {
+    displayManager = {
+      defaultSession = "gnome";
+      autoLogin = {
+        enable = true;
+        user = "ayako";
+      };
+    };
+
+    printing.enable = true;
+    pipewire = {
       enable = true;
-      user = "ayako";
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
     };
   };
 
-  services.printing.enable = true;
-
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
+  security = {
+    rtkit.enable = true;
+    sudo.enable = false;
+    doas = {
+      enable = true;
+      extraRules = [{
+        persist = true;
+        groups = [ "wheel" ];
+      }];
+    };
   };
 
   users.users.ayako = {
