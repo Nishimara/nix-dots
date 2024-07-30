@@ -192,8 +192,6 @@
     man-pages
     man-pages-posix
     dig
-    gnome3.adwaita-icon-theme
-    wayland
     polkit-kde-agent
     killall
     xdg-utils
