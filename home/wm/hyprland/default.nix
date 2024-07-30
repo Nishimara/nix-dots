@@ -19,6 +19,10 @@ in
     ./hypridle
   ];
 
+  home.packages = with pkgs; [
+    hyprpaper
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
 
@@ -36,16 +40,6 @@ in
         "SDL_VIDEODRIVER,wayland"
         "XCURSOR_SIZE,12"
         "GTK_THEME,Adwaita:dark"
-
-        # tearing
-#       "WLR_DRM_NO_ATOMIC,1" # only for kernel < 6.8
-
-        # nvidia shit
-#       "LIBVA_DRIVER_NAME,nvidia"
-#       "XDG_SESSION_TYPE,wayland"
-#       "GBM_BACKEND,nvidia-drm"
-#       "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-#       "WLR_NO_HARDWARE_CURSORS,1"
       ];
 
       exec-once = [
@@ -135,7 +129,10 @@ in
         "float, class:^(steam)$,title:^(Screenshot Manager)$"
         "float, class:^(steam)$,title:^(Friends List)$"
 
-#       "immediate, fullscreen:1"
+        "fullscreen, initialClass:^(gamescope)$"
+        "noborder, initialClass:^(gamescope)$"
+        "rounding 0, initialClass:^(gamescope)$"
+        "immediate, initialClass:^(gamescope)$"
       ];
 
       bindm = [

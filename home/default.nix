@@ -59,7 +59,6 @@
     nixpkgs-fmt
 
     # gui
-    hyprpaper
     grimblast # screenshots
     telegram-desktop
     gimp
