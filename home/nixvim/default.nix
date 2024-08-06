@@ -63,6 +63,7 @@
 
       comment.enable = true;
       gitsigns.enable = true;
+      guess-indent.enable = true;
       hmts.enable = true;
       illuminate.enable = true;
       luasnip.enable = true;
@@ -73,14 +74,14 @@
         servers = {
           clangd.enable = true;
           tsserver.enable = true;
-
+/*
           nil-ls = {
             enable = true;
             settings = {
               formatting.command = [ "nixpkgs-fmt" ];
             };
           };
-
+*/
           nixd.enable = true;
 
           rust-analyzer = {
