@@ -15,7 +15,7 @@
       cursor-theme = "Adwaita";
     };
     "org/gnome/shell" = {
-      disabled-user-extensions = false;
+      disable-user-extensions = false;
 
       enabled-extensions = [
         "appindicatorsupport@rgcjonas.gmail.com"

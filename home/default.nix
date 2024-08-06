@@ -70,6 +70,7 @@
     qbittorrent
     gpu-screen-recorder
     gpu-screen-recorder-gtk
+    element-desktop
     eog # image viewer
     nautilus # file manager
     (lutris-free.override {
@@ -85,6 +86,7 @@
         gamescope
       ];
     }) # yay windows games (dont forget bubblewrap for them)
+    vlc
 
     # tools
     file
