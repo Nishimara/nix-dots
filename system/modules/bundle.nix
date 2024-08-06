@@ -8,5 +8,11 @@
     ./proxychains
     ./gnome
     ./nvidia
+    ./doh
+    ./hosts
+    ./syncthing
+    ./podman
+    ./steam
+    ./sshd
   ];
 }

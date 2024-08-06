@@ -4,13 +4,22 @@
     ../../modules/bundle.nix
   ];
 
-  modules.gnome.enable = true;
+  modules = {
+    doh.enable = true;
+    gnome.enable = true;
+    hosts.enable = true;
+    podman.enable = true;
+    sshd.enable = true;
+    steam.enable = true;
+    syncthing.enable = true;
+  };
 
   boot = {
     loader = {
       systemd-boot.enable = lib.mkForce false;
       efi.canTouchEfiVariables = true;
     };
+
     lanzaboote = {
       enable = true;
       pkiBundle = "/etc/secureboot";
@@ -135,18 +144,23 @@
   users.users.ayako = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.fish;
   };
 
   environment.systemPackages = with pkgs; [
     agenix
     btop
+    git
     neovim
     sbctl
   ];
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+  programs = {
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+    fish.enable = true;
   };
 
   system.stateVersion = "24.05";

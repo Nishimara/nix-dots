@@ -6,7 +6,15 @@
     ../../modules/bundle.nix
   ];
 
-  modules.nvidia.enable = true;
+  modules = {
+    doh.enable = true;
+    hosts.enable = true;
+    podman.enable = true;
+    nvidia.enable = true;
+    sshd.enable = true;
+    steam.enable = true;
+    syncthing.enable = true;
+  };
 
   boot = {
     loader = {
@@ -31,56 +39,6 @@
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
-    nameservers = [ "127.0.0.1" "::1" ];
-    dhcpcd.extraConfig = "nohook resolv.conf";
-    networkmanager.dns = "none";
-  };
-
-  services.dnscrypt-proxy2 = {
-    enable = true;
-    settings = {
-      ipv6_servers = true;
-      require_dnssec = true;
-
-      sources.public-resolvers = {
-        urls = [
-          "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md"
-          "https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md"
-        ];
-        cache_file = "/var/lib/dnscrypt-proxy/public-resolvers.md";
-        minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
-      };
-    };
-  };
-
-  # i really hate mail ru lmao
-  networking.hosts = {
-    "0.0.0.0" = [
-      "ok.ru"
-      "api.ok.ru"
-      "r.mail.ru"
-      "mail.ru"
-      "api.mail.ru"
-
-      "overseauspider.yuanshen.com"
-      "log-upload-os.hoyoverse.com"
-      "log-upload-os.mihoyo.com"
-      "dump.gamesafe.qq.com"
-
-      "log-upload.mihoyo.com"
-      "devlog-upload.mihoyo.com"
-      "uspider.yuanshen.com"
-      "osuspider.yuanshen.com"
-      "sg-public-data-api.hoyoverse.com"
-      "ys-log-upload-os.hoyoverse.com"
-      "public-data-api.mihoyo.com"
-
-      "prd-lender.cdp.internal.unity3d.com"
-      "thind-prd-knob.data.ie.unity3d.com"
-      "thind-gke-usc.prd.data.corp.unity3d.com"
-      "cdp.cloud.unity3d.com"
-      "remote-config-proxy-prd.uca.cloud.unity3d.com"
-    ];
   };
 
   time.timeZone = "Europe/Moscow";
@@ -219,24 +177,6 @@
     };
 
     gamemode.enable = true;
-
-    steam = {
-      package = pkgs.steam.override {
-        extraPkgs = pkgs: with pkgs; [
-          mangohud
-        ];
-        extraEnv = {
-          # support cyrillic symbols
-          LANG = "ru_RU.UTF-8";
-        };
-        extraBwrapArgs = [
-          "--bind $HOME/steamhome $HOME"
-          "--bind $HOME/Games/Steam $HOME/.local/share/Steam"
-        ];
-      };
-
-      enable = true;
-    };
   };
 
   services = {
@@ -252,13 +192,6 @@
         };
       };
     };
-    
-    openssh = {
-      enable = true;
-      settings.PasswordAuthentication = false;
-    };
-    
-    fail2ban.enable = true;
     
     pipewire = {
       enable = true;
@@ -303,18 +236,6 @@
     };
   };
 
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-    
-    defaultNetwork.settings.dns_enabled = true;
-
-    autoPrune = {
-      enable = true;
-      flags = [ "--all" ];
-    };
-  };
-
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [ 25565 ];
@@ -325,8 +246,6 @@
       { from = 1714; to = 1764; } # KDE connect
     ];
   };
-
-  systemd.oomd.enable = true;
 
   system.stateVersion = "24.05";
 }
