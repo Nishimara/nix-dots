@@ -27,42 +27,62 @@
       url = "github:nix-community/lanzaboote/v0.4.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-programs-sqlite = {
+      url = "github:wamserma/flake-programs-sqlite";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, agenix, nixvim, hyprland, lanzaboote, ... }@inputs:
-  let
+  outputs = { nixpkgs, home-manager, agenix, nixvim, hyprland, lanzaboote, nix-programs-sqlite, ... }@inputs: let
     system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
+    pkgs = import nixpkgs {
+      inherit system;
+
+      overlays = [
+        agenix.overlays.default
+      ];
+
+      config = {
+        allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+          "steam"
+          "steam-original"
+          "steam-run"
+          "nvidia-x11"
+          "zerotierone"
+        ];
+      };
+    };
   in {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      inherit system;
+      inherit system pkgs;
 
       modules = [
         ./system/machine/nixos
-
+        agenix.nixosModules.default
         hyprland.nixosModules.default {
           programs.hyprland.enable = true; #needed in system and in user configurations
         }
-
-        agenix.nixosModules.default
+        nix-programs-sqlite.nixosModules.programs-sqlite
       ];
 
       specialArgs = { inherit inputs; };
     };
 
     nixosConfigurations.thinkpad = nixpkgs.lib.nixosSystem {
-      inherit system;
+      inherit system pkgs;
 
       modules = [
         ./system/machine/thinkpad
-        lanzaboote.nixosModules.lanzaboote
         agenix.nixosModules.default
+        lanzaboote.nixosModules.lanzaboote
+        nix-programs-sqlite.nixosModules.programs-sqlite
       ];
 
       specialArgs = { inherit inputs; };
     };
 
-    homeConfigurations."ayako" = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations.ayako = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
 
       modules = [
