@@ -138,6 +138,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    agenix
     btop
     neovim
     sbctl

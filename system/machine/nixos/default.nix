@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -175,12 +175,12 @@
   };
 
   environment.systemPackages = with pkgs; [
+    agenix
     vim
     wget
     git
     bat
     podman-compose
-    vlc
     ffmpeg
     alsa-lib
     alsa-tools
@@ -199,14 +199,6 @@
     bubblewrap
     mangohud
     wl-clipboard
-  ] ++ [ inputs.agenix.packages.${pkgs.system}.default ];
-
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "steam"
-    "steam-original"
-    "steam-run"
-    "nvidia-x11"
-    "zerotierone"
   ];
 
   programs = {
@@ -281,7 +273,6 @@
 
   security = {
     pam.services.swaylock = {};
-    pam.services.hyprlock = {};
 
     polkit = {
       enable = true;
