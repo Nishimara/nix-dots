@@ -4,7 +4,7 @@
     enable = true;
 
     userName = "Nishimara";
-    userEmail = "admin@abdulakh.fun";
+    userEmail = "me@nishimara.com";
 
     signing = {
       key = "${config.home.homeDirectory}/.ssh/gitsign.pub";
