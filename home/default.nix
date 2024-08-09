@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [ ./bundle.nix ];
 
@@ -54,7 +54,7 @@
 
     # gui
     grimblast # screenshots
-    telegram-desktop
+    inputs.tdesktop-patched.packages."${system}".default
     gimp
     prismlauncher # minecraft
     vesktop # discord with vencord
