@@ -1,0 +1,53 @@
+diff --git a/src/main.rs b/src/main.rs
+index 8b164d3..6efb868 100644
+--- a/src/main.rs
++++ b/src/main.rs
+@@ -26,7 +26,7 @@ fn main() -> Result<()> {
+ fn self_elevate() -> ! {
+     use std::os::unix::process::CommandExt;
+ 
+-    let mut cmd = std::process::Command::new("sudo");
++    let mut cmd = std::process::Command::new("doas");
+     cmd.args(std::env::args());
+     debug!("{:?}", cmd);
+     let err = cmd.exec();
+diff --git a/src/nixos.rs b/src/nixos.rs
+index bfb0cf8..9533498 100644
+--- a/src/nixos.rs
++++ b/src/nixos.rs
+@@ -28,7 +28,7 @@ impl NHRunnable for interface::OsArgs {
+ impl OsRebuildArgs {
+     pub fn rebuild(&self, rebuild_type: &OsRebuildType) -> Result<()> {
+         if nix::unistd::Uid::effective().is_root() {
+-            bail!("Don't run nh os as root. I will call sudo internally as needed");
++            bail!("Don't run nh os as root. I will call doas internally as needed");
+         }
+ 
+         let hostname = match &self.hostname {
+@@ -132,7 +132,7 @@ impl OsRebuildArgs {
+             let switch_to_configuration = switch_to_configuration.to_str().unwrap();
+ 
+             commands::CommandBuilder::default()
+-                .args(["sudo", switch_to_configuration, "test"])
++                .args(["doas", switch_to_configuration, "test"])
+                 .message("Activating configuration")
+                 .build()?
+                 .exec()?;
+@@ -141,7 +141,7 @@ impl OsRebuildArgs {
+         if let Boot(_) | Switch(_) = rebuild_type {
+             commands::CommandBuilder::default()
+                 .args([
+-                    "sudo",
++                    "doas",
+                     "nix-env",
+                     "--profile",
+                     SYSTEM_PROFILE,
+@@ -156,7 +156,7 @@ impl OsRebuildArgs {
+             let switch_to_configuration = switch_to_configuration.to_str().unwrap();
+ 
+             commands::CommandBuilder::default()
+-                .args(["sudo", switch_to_configuration, "boot"])
++                .args(["doas", switch_to_configuration, "boot"])
+                 .message("Adding configuration to bootloader")
+                 .build()?
+                 .exec()?;

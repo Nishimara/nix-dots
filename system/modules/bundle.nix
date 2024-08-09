@@ -14,5 +14,7 @@
     ./podman
     ./steam
     ./sshd
+    ./nix
+    ./nh
   ];
 }

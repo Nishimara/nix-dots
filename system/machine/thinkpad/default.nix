@@ -9,6 +9,8 @@
     gnome.enable = true;
     hosts.enable = true;
     podman.enable = true;
+    nh.enable = true;
+    nix.enable = true;
     sshd.enable = true;
     steam.enable = true;
     syncthing.enable = true;
@@ -89,21 +91,6 @@
       LC_TELEPHONE = "en_US.UTF-8";
       LC_TIME = "en_US.UTF-8";
     };
-  };
-
-  nix = {
-    settings = {
-      experimental-features = [ "flakes" "nix-command" ];
-      auto-optimise-store = true;
-    };
-
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 30d";
-    };
-
-    optimise.automatic = true;
   };
 
   services = {
