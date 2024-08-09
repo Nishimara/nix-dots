@@ -42,12 +42,6 @@
       XKB_DEFAULT_LAYOUT = "us,ru";
       XKB_DEFAULT_OPTIONS = "grp:lalt_lshift_toggle";
     };
-
-    pointerCursor = {
-      name = "Adwaita";
-      size = 16;
-      package = pkgs.adwaita-icon-theme;
-    };
   };
 
   home.packages = with pkgs; [
