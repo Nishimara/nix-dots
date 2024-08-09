@@ -40,6 +40,8 @@ in
         "SDL_VIDEODRIVER,wayland"
         "XCURSOR_SIZE,12"
         "GTK_THEME,Adwaita:dark"
+        "HYPRCURSOR_THEME,catppuccin-mocha-mauve"
+        "HYPRCURSOR_SIZE,24"
       ];
 
       exec-once = [
@@ -200,4 +202,6 @@ in
     wallpaper = ,${../../../imgs/wallpaper.jpg}
     ipc = off
   '';
+
+  home.file.".local/share/icons/catppuccin-mocha-mauve".source = "${pkgs.catppuccin-cursors.mochaMauve}/share/icons/catppuccin-mocha-mauve-cursors";
 }
