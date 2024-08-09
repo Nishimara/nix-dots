@@ -191,7 +191,7 @@ in {
       id = 0;
       isDefault = true;
       extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
-        # all the exts may be found there
+        # all the exts can be found there
         # https://gitlab.com/rycee/nur-expressions/-/blob/master/pkgs/firefox-addons/addons.json?ref_type=heads
 
         clearurls
@@ -199,6 +199,7 @@ in {
         istilldontcareaboutcookies
         ublock-origin
         seventv
+        sponsorblock
         user-agent-string-switcher
         violentmonkey
 
