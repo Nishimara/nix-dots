@@ -1,13 +1,20 @@
 { pkgs, ... }:
-{
-  home.packages = with pkgs.gnomeExtensions; [
-    appindicator
-    blur-my-shell
-    dash-to-dock
-    gnome-clipboard
-    media-controls
-    pip-on-top
+
+let
+  extensionsList = [
+    "appindicator"
+    "auto-move-windows"
+    "blur-my-shell"
+    "dash-to-dock"
+    "disable-unredirect"
+    "gsconnect"
+    "media-controls"
+    "pip-on-top"
+    "rounded-window-corners"
   ];
+in
+{
+  home.packages = builtins.map (x: pkgs.gnomeExtensions."${x}") extensionsList;
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
@@ -17,16 +24,7 @@
     "org/gnome/shell" = {
       disable-user-extensions = false;
 
-      enabled-extensions = [
-        "appindicatorsupport@rgcjonas.gmail.com"
-        "auto-move-windows@gnome-shell-extensions.gcampax.github.com"
-        "blur-my-shell@aunetx"
-        "dash-to-dock@micxgx.gmail.com"
-        "mediacontrols@cliffniff.github.com"
-        "pip-on-top@rafostar.github.com"
-        "rounded-window-corners@yilozt"
-        "unredirect@vaina.lt"
-      ];
+      enabled-extensions = builtins.map (x: pkgs.gnomeExtensions."${x}".extensionUuid) extensionsList;
     };
   };
 
