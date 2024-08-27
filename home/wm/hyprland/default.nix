@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  notify-mic-status = pkgs.writeShellScriptBin "notify-mic-status" ''
+  notify-mic-status = pkgs.writeShellScript "notify-mic-status.sh" ''
     mic_status=$(amixer get Capture | awk '/\[on\]/{print $6; exit}')
 
     if [ "$mic_status" == "[on]" ]; then
@@ -165,7 +165,7 @@ in
         "CTRL, Print, exec, grimblast --notify copysave output \"$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\\ %H-%M-%S).png\""
         ", Print, exec, grimblast --notify --freeze copysave area \"$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d\\ %H-%M-%S).png\""
         "$mod, L, exec, swaylock -e"
-        ", F8, exec, amixer set Capture toggle && ${notify-mic-status}/bin/notify-mic-status"
+        ", F8, exec, amixer set Capture toggle && ${notify-mic-status}"
 
         "$mod, left, movefocus, l"
         "$mod, right, movefocus, r"
