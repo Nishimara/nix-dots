@@ -47,7 +47,7 @@ in
         "mako"
         "waybar"
         "[workspace 1 silent] firefox"
-        "[workspace 2 silent] telegram-desktop"
+        "[workspace 2 silent] materialgram"
         "[workspace 3 silent] foot"
         "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
 
