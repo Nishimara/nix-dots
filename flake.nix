@@ -32,10 +32,6 @@
       url = "github:wamserma/flake-programs-sqlite";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    tdesktop-patched = {
-      url = "github:shwewo/telegram-desktop-patched";
-    };
   };
 
   outputs = { nixpkgs, home-manager, agenix, nixvim, hyprland, lanzaboote, nix-programs-sqlite, ... }@inputs: let

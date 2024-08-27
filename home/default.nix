@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   imports = [ ./bundle.nix ];
 
@@ -55,7 +55,6 @@
 
     # gui
     grimblast # screenshots
-    inputs.tdesktop-patched.packages."${system}".default
     gimp
     prismlauncher # minecraft
     vesktop # discord with vencord
@@ -67,6 +66,7 @@
     gpu-screen-recorder-gtk
     element-desktop
     eog # image viewer
+    materialgram
     nautilus # file manager
     (lutris-free.override {
       extraLibraries = _: [
