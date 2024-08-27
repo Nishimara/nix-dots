@@ -11,7 +11,9 @@
     services.dnscrypt-proxy2 = {
       enable = true;
       settings = {
-        ipv6_servers = true;
+        ipv6_servers = config.networking.enableIPv6;
+        block_ipv6 = ! (config.networking.enableIPv6);
+
         require_dnssec = true;
 
         sources.public-resolvers = {
