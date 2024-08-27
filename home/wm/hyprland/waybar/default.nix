@@ -29,6 +29,28 @@
         "clock" = {
           format = "{:%d %h %Y %H:%M}";
           format-alt = "{:%d %h %Y %H:%M:%S}";
+          tooltip-format = "<tt><small>{calendar}</small></tt>";
+          calendar = {
+            mode = "year";
+            mode-mon-col = 3;
+            weeks-pos = "right";
+            on-scroll = 1;
+            format = {
+              today = "<span color='#ff6699'><b>{}</b></span>";
+              days = "<span color='#ecc6d9'><b>{}</b></span>";
+              weeks = "<span color='#99ffdd'><b>{}</b></span>";
+              weekdays = "<span color='#ffcc66'><b>{}</b></span>";
+              months = "<span color='#ffead3'><b>{}</b></span>";
+            };
+          };
+          actions = {
+            on-click-right = "mode";
+            on-click-forward = "tz_up";
+            on-click-backward = "tz_down";
+            on-scroll-up = "shift_up";
+            on-scroll-down = "shift_down";
+          };
+          interval = 1;
         };
 
         "bluetooth" = {
@@ -73,8 +95,8 @@
 
         "pulseaudio#microphone" = {
           format = "{format_source}";
-          format-source = " {volume}%";
-          format-source-muted = " Muted";
+          format-source = "󰍬 {volume}%";
+          format-source-muted = "󰍭 Muted";
           on-click = "amixer set Capture toggle";
           on-scroll-up = "amixer -q sset Capture 5%+";
           on-scroll-down = "amixer -q sset Capture 5%-";
@@ -100,6 +122,6 @@
       };
 
    };
-    style = ./style.css;
+   style = ./style.css;
   };
 }
