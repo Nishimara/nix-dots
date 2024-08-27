@@ -21,6 +21,10 @@ in
       color-scheme = "prefer-dark";
       cursor-theme = "Adwaita";
     };
+    "org/gnome/desktop/wm/keybindings" = {
+      switch-input-source = [ "<Shift>Alt_L" ];
+      switch-input-source-backward = [ "<Alt>Shift_L" ];
+    };
     "org/gnome/shell" = {
       disable-user-extensions = false;
 
