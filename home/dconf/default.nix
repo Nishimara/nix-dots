@@ -19,7 +19,6 @@ in
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
-      cursor-theme = "Adwaita";
     };
     "org/gnome/desktop/wm/keybindings" = {
       switch-input-source = [ "<Shift>Alt_L" ];

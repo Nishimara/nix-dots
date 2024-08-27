@@ -4,6 +4,7 @@
 
   programs = {
     feh.enable = true;
+    fzf.enable = true;
     home-manager.enable = true;
     obs-studio = {
       enable = true;

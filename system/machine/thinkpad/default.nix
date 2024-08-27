@@ -44,16 +44,15 @@
 
   fonts = { 
     packages = with pkgs; [
-      jetbrains-mono
       noto-fonts
       (nerdfonts.override {
         fonts = [
           "Hack"
+          "JetBrainsMono"
           "Iosevka"
           "NerdFontsSymbolsOnly"
         ];
       })
-      monocraft
 
       # unicode
       unifont
@@ -71,9 +70,8 @@
       monospace = [
         "Hack Nerd Font Mono"
         "Iosevka Nerd Font Mono"
-        "JetBrains Mono NL Light"
+        "JetBrainsMono Nerd Font NL Light"
         "Symbols Nerd Font Mono"
-        "Monocraft"
       ];
     };
   };
