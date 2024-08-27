@@ -111,8 +111,8 @@ in
         workspace_swipe = "off";
       };
 
-      misc = {
-        no_direct_scanout = false;
+      render = {
+        direct_scanout = true;
       };
 
       windowrulev2 = [
