@@ -27,6 +27,7 @@
       pkiBundle = "/etc/secureboot";
     };
 
+    kernelPackages = pkgs.linuxPackages_latest;
     tmp.cleanOnBoot = true;
   };
 
@@ -94,18 +95,8 @@
   };
 
   services = {
-    xserver.xkb = {
-      layout = "us";
-      variant = "";
-    };
-
-    displayManager = {
-      defaultSession = "gnome";
-      autoLogin = {
-        enable = true;
-        user = "ayako";
-      };
-    };
+    auto-cpufreq.enable = true;
+    power-profiles-daemon.enable = lib.mkForce false;
 
     printing.enable = true;
     pipewire = {
@@ -113,6 +104,10 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+    };
+    xserver.xkb = {
+      layout = "us";
+      variant = "";
     };
   };
 
@@ -130,7 +125,7 @@
 
   users.users.ayako = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "adbusers" ];
     shell = pkgs.fish;
   };
 
@@ -140,14 +135,25 @@
     git
     neovim
     sbctl
+    wget
   ];
 
   programs = {
+    adb.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
     };
     fish.enable = true;
+  };
+
+  networking.firewall = {
+    allowedTCPPortRanges = [
+      { from = 1714; to = 1764; }
+    ];
+    allowedUDPPortRanges = [
+      { from = 1714; to = 1764; }
+    ];
   };
 
   system.stateVersion = "24.05";
