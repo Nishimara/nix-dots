@@ -5,7 +5,7 @@
     settings = {
       main = {
         term = "xterm-256color";
-        font = "JetBrains Mono:size=14";
+        font = "JetBrains Mono NF:size=14";
       };
 
       mouse = {

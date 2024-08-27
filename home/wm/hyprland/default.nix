@@ -40,8 +40,6 @@ in
         "SDL_VIDEODRIVER,wayland"
         "XCURSOR_SIZE,12"
         "GTK_THEME,Adwaita:dark"
-        "HYPRCURSOR_THEME,catppuccin-mocha-mauve"
-        "HYPRCURSOR_SIZE,24"
       ];
 
       exec-once = [
@@ -51,7 +49,6 @@ in
         "[workspace 1 silent] firefox"
         "[workspace 2 silent] telegram-desktop"
         "[workspace 3 silent] foot"
-        "[workspace 4 silent] vesktop"
         "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
 
         "tmux setenv -g HYPRLAND_INSTANCE_SIGNATURE \"$HYPRLAND_INSTANCE_SIGNATURE\""
@@ -203,5 +200,4 @@ in
     ipc = off
   '';
 
-  home.file.".local/share/icons/catppuccin-mocha-mauve".source = "${pkgs.catppuccin-cursors.mochaMauve}/share/icons/catppuccin-mocha-mauve-cursors";
 }

@@ -16,5 +16,6 @@
     ./starship
     ./foot
     ./yazi
+    ./cursor
   ];
 }
