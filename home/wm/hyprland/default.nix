@@ -124,14 +124,19 @@ in
         "workspace 4, class:vesktop"
         "float, class:^(vesktop)$,initialTitle:^(Discord Popout)$"
         "float, class:^(firefox)$,title:^(Picture-in-Picture)$"
+        "pin, class:$(firefox)$,title:^(Picture-in-Picture)$"
 
         "float, class:^(steam)$,title:^(Screenshot Manager)$"
         "float, class:^(steam)$,title:^(Friends List)$"
 
-        "fullscreen, initialClass:^(gamescope)$"
-        "noborder, initialClass:^(gamescope)$"
-        "rounding 0, initialClass:^(gamescope)$"
-        "immediate, initialClass:^(gamescope)$"
+        "fullscreen, initialClass:^steam_app_\\d+$"
+        "fullscreen, initialClass:^gamescope$"
+        "noborder, initialClass:^steam_app_\\d+$"
+        "noborder, initialClass:^gamescope$"
+        "rounding 0, initialClass:^steam_app_\\d+$"
+        "rounding 0, initialClass:^gamescope$"
+        "immediate, initialClass:^steam_app_\\d+$"
+        "immediate, initialClass:^gamescope$"
       ];
 
       bindm = [
