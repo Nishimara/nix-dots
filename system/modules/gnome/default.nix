@@ -5,29 +5,26 @@
   config = lib.mkIf config.modules.gnome.enable {
     hardware.pulseaudio.enable = false;
 
-    environment.gnome.excludePackages = (with pkgs; [
+    environment.gnome.excludePackages = with pkgs; [
+      atomix # game
       baobab # disk usage analyzer
       cheese # webcam view
       epiphany # browser
       file-roller # archive manager
       geary # email client
       gedit # gui text editor
-      gnome-photos
-      gnome-tour # gnome guide
-      seahorse # password manager
-      totem # video player
-      yelp # help viewer
-
-      gnome-terminal
-    ]) ++ (with pkgs.gnome; [
-      atomix # game
-      hitori # game
-      iagno # game
-      tali # game
-
       gnome-characters
       gnome-music
-    ]);
+      gnome-photos
+      gnome-terminal
+      gnome-tour # gnome guide
+      hitori # game
+      iagno # game
+      seahorse # password manager
+      tali # game
+      totem # video player
+      yelp # help viewer
+    ];
 
     environment.systemPackages = with pkgs; [
       gnome-tweaks
