@@ -118,8 +118,8 @@ in
       windowrulev2 = [
         "float, class:^(org.kde.polkit-kde-authentication-agent-1)$"
 
-        "float, class:^(org.telegram.desktop|telegramdesktop)$,title:^(Media viewer)$"
-        "fullscreen, class:^(org.telegram.desktop|telegramdesktop)$,title:^(Media viewer)$"
+        "float, class:^(io.github.kukuruzka165.materialgram)$,title:^(Media viewer)$"
+        "fullscreen, class:^(io.github.kukuruzka165.materialgram)$,title:^(Media viewer)$"
 
         "workspace 4, class:vesktop"
         "float, class:^(vesktop)$,initialTitle:^(Discord Popout)$"
