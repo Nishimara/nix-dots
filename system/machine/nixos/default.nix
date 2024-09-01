@@ -154,6 +154,7 @@
     };
 
     gamemode.enable = true;
+    nano.enable = false;
   };
 
   services = {
