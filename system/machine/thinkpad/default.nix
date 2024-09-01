@@ -143,6 +143,7 @@
       enableSSHSupport = true;
     };
     fish.enable = true;
+    nano.enable = false;
   };
 
   networking.firewall = {
