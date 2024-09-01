@@ -8,10 +8,12 @@
       fish_config theme choose "Dracula";
 
       ${pkgs.nix-your-shell}/bin/nix-your-shell fish | source
-
-      alias wttr="curl wttr.in"
-      alias tb="nc termbin.com 9999"
     '';
+
+    shellAliases = {
+      wttr = "curl wttr.in";
+      tb = "nc termbin.com 9999";
+    };
 
     plugins = [
       { name = "grc"; src = pkgs.fishPlugins.grc.src; }
