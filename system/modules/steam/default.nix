@@ -18,6 +18,22 @@
       };
 
       enable = true;
+
+      localNetworkGameTransfers.openFirewall = true;
+
+      gamescopeSession = {
+        enable = true;
+        args = [
+          "-W 1920"
+          "-H 1080"
+          "--force-grab-cursor"
+          "--expose-wayland"
+        ];
+        env = {
+          XKB_DEFAULT_LAYOUT = "us,ru";
+          XKB_DEFAULT_OPTIONS = "grp:lalt_lshift_toggle";
+        };
+      };
     };
   };
 }
