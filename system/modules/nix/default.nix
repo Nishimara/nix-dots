@@ -17,13 +17,6 @@
           "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
         ];
       };
-
-      gc = lib.mkIf (!config.modules.nh.enable) {
-        automatic = true;
-        dates = "weekly";
-        options = "--delete-older-than 15d";
-      };
-      
       optimise.automatic = true;
     };
   };
