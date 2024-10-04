@@ -1,15 +1,22 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: "JetBrainsMono Nerd Font";
+/*  font-family: "JetBrainsMono Nerd Font"; */
+    font-family: "Noto Sans";
     font-weight: bold;
     font-size: 16px;
     min-height: 0;
 }
-
+/*
 window#waybar {
     background: rgba(21, 18, 27, 0);
     color: #cdd6f4;
+}
+*/
+
+window#waybar {
+    background: alpha(#091d2d, 0.5);
+    color: #3f82a7;
 }
 
 tooltip {
