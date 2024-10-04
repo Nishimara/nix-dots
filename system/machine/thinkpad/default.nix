@@ -131,6 +131,7 @@
     agenix
     btop
     git
+    killall
     neovim
     sbctl
     wget
