@@ -74,16 +74,8 @@
         servers = {
           clangd.enable = true;
           tsserver.enable = true;
-/*
-          nil-ls = {
-            enable = true;
-            settings = {
-              formatting.command = [ "nixpkgs-fmt" ];
-            };
-          };
-*/
           nixd.enable = true;
-
+          pylyzer.enable = true;
           rust-analyzer = {
             enable = true;
             installCargo = false;
