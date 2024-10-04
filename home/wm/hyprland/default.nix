@@ -1,12 +1,12 @@
 { pkgs, ... }:
 let
   notify-mic-status = pkgs.writeShellScript "notify-mic-status.sh" ''
-    mic_status=$(amixer get Capture | awk '/\[on\]/{print $6; exit}')
+    mic_status=$(${pkgs.alsa-utils}/bin/amixer get Capture | ${pkgs.gawk}/bin/awk '/\[on\]/{print $6; exit}')
 
     if [ "$mic_status" == "[on]" ]; then
-      notify-send "Mic unmuted"
+      ${pkgs.libnotify}/bin/notify-send "Mic unmuted"
     else
-      notify-send "Mic muted"
+      ${pkgs.libnotify}/bin/notify-send "Mic muted"
     fi
   '';
 in
@@ -62,6 +62,7 @@ in
         kb_rules = "";
 
         follow_mouse = 1;
+        accel_profile = "flat";
 
         touchpad = {
           natural_scroll = "no";
