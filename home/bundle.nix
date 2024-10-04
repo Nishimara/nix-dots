@@ -3,7 +3,6 @@
   imports = [
     ./nixvim
     ./bat
-#   ./kitty
     ./fish
     ./git
     ./wm/hyprland
