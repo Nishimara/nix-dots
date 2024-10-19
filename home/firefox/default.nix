@@ -1,23 +1,7 @@
 { pkgs, inputs, ...}:
 let
-  lock-false = {
-    Value = false;
-    Status = "locked";
-  };
-  lock-true = {
-    Value = true;
-    Status = "locked";
-  };
-  lock-empty = {
-    Value = "";
-    Status = "locked";
-  };
-  lock-0 = {
-    Value = 0;
-    Status = "locked";
-  };
-  lock-1 = {
-    Value = 1;
+  lock = value: {
+    Value = value;
     Status = "locked";
   };
   profile-name = "alpha";
@@ -60,81 +44,72 @@ in {
         };
 
         Preferences = {
-          "browser.aboutConfig.showWarning" = lock-false;
-          "browser.cache.offline.enable" = lock-false; # false cuz may be used for fingreprinting
-          "browser.crashReports.unsubmittedCheck.autoSubmit" = lock-false;
-          "browser.crashReports.unsubmittedCheck.autoSubmit2" = lock-false;
-          "browser.crashReports.unsubmittedCheck.enabled" = lock-false;
-          "browser.disableResetPrompt" = lock-true;
-          "browser.download.useDownloadDir" = lock-false; # ask user each time where to save downloaded files
-          "browser.newtab.preload" = lock-false;
-          "browser.newtabpage.activity-stream.feeds.section.topstories" = lock-false;
-          "browser.newtabpage.activity-stream.feeds.snippets" = lock-false;
-          "browser.newtabpage.activity-stream.section.highlights.includePocket" = lock-false;
-          "browser.newtabpage.enchaced" = lock-false;
-          "browser.newtabpage.introShown" = lock-true;
-          "browser.safebrowsing.appRepURL" = lock-empty;
-          "browser.safebrowsing.blockedURIs.enabled" = lock-false;
-          "browser.safebrowsing.downloads.enabled" = lock-false;
-          "browser.safebrowsing.downloads.remote.enabled" = lock-false;
-          "browser.safebrowsing.downloads.remote.url" = lock-empty;
-          "browser.safebrowsing.enabled" = lock-false;
-          "browser.safebrowsing.malware.enabled" = lock-false;
-          "browser.safebrowsing.phishing.enalbed" = lock-false;
-          "browser.selfsupport.url" = lock-empty;
-          "browser.send_pings" = lock-false;
-          "browser.sessionstore.privacy_level" = lock-0;
-          "browser.startup.homepage_override.mstone" = {
-            Value = "ignore";
-            Status = "locked";
-          };
-          "browser.tabs.crashReporting.sendReport" = lock-false;
-          "browser.urlbar.groupLabels.enabled" = lock-false;
-          "browser.urlbar.quicksuggest.enabled" = lock-false;
-          "browser.urlbar.speculativeConnect.enabled" = lock-false;
-          "browser.urlbar.trimURLs" = lock-false;
-          "datareporting.policy.dataSubmissionEnabled" = lock-false;
-          "dom.battery.enabled" = lock-false;
-          "dom.event.clipboardevents.enabled" = lock-false;
-          "dom.security.https_only_mode" = lock-true;
-          "dom.security.https_only_mode_ever_enabled" = lock-true;
-          "dom.webaudio.enabled" = lock-false;
-          "media.autoplay.default" = lock-1; # 0 for allow and 2 for asking a user on each site
-          "media.eme.enabled" = lock-false; #drm
-          "media.gmp-widevinecdm.enabled" = lock-false; #drm
-          "media.navigator.enabled" = lock-false;
-          "media.peerconnection.enabled" = lock-false;
-          "media.video_stats.enabled" = lock-false;
-          "network.allow-experiments" = lock-false;
-          "network.captive-portal-service.enabled" = lock-false;
-          "network.cookie.cookieBehavior" = lock-1;
-          "network.dns.disablePrefetch" = lock-true;
-          "network.dns.disablePrefetchFromHTTPS" = lock-true;
-          "network.http.referer.spoofSource" = lock-true;
-          "network.http.speculative-parallel-limit" = lock-0;
-          "network.predictor.enable-prefetch" = lock-0;
-          "network.predictor.enabled" = lock-false;
-          "network.prefetch-next" = lock-false;
-          "network.trr.custom_uri" = {
-            Value = "https://1.1.1.1";
-            Status = "locked";
-          };
-          "network.trr.mode" = {
-            Value = 2;
-            Status = "locked";
-          };
-          "pdfjs.enableScripting" = lock-false;
-          "signon.autofillForms" = lock-false;
-          "browser.urlbar.suggest.searches" = lock-false;
-          "browser.urlbar.showSearchSuggestionsFirst" = lock-false;
-          "browser.newtabpage.activity-stream.showSponsored" = lock-false;
-          "browser.newtabpage.activity-stream.system.showSponsored" = lock-false;
-          "browser.newtabpage.activity-stream.showSponsoredTopSites" = lock-false;
-          "extensions.pocket.enabled" = lock-false;
-          "extensions.screenshots.disabled" = lock-true;
+          "browser.aboutConfig.showWarning" = lock false;
+          "browser.cache.offline.enable" = lock false; # false cuz may be used for fingreprinting
+          "browser.crashReports.unsubmittedCheck.autoSubmit" = lock false;
+          "browser.crashReports.unsubmittedCheck.autoSubmit2" = lock false;
+          "browser.crashReports.unsubmittedCheck.enabled" = lock false;
+          "browser.disableResetPrompt" = lock true;
+          "browser.download.useDownloadDir" = lock false; # ask user each time where to save downloaded files
+          "browser.newtab.preload" = lock false;
+          "browser.newtabpage.activity-stream.feeds.section.topstories" = lock false;
+          "browser.newtabpage.activity-stream.feeds.snippets" = lock false;
+          "browser.newtabpage.activity-stream.section.highlights.includePocket" = lock false;
+          "browser.newtabpage.enchaced" = lock false;
+          "browser.newtabpage.introShown" = lock true;
+          "browser.safebrowsing.appRepURL" = lock "";
+          "browser.safebrowsing.blockedURIs.enabled" = lock false;
+          "browser.safebrowsing.downloads.enabled" = lock false;
+          "browser.safebrowsing.downloads.remote.enabled" = lock false;
+          "browser.safebrowsing.downloads.remote.url" = lock "";
+          "browser.safebrowsing.enabled" = lock false;
+          "browser.safebrowsing.malware.enabled" = lock false;
+          "browser.safebrowsing.phishing.enalbed" = lock false;
+          "browser.selfsupport.url" = lock "";
+          "browser.send_pings" = lock false;
+          "browser.sessionstore.privacy_level" = lock 0;
+          "browser.startup.homepage_override.mstone" = lock "ignore";
+          "browser.tabs.crashReporting.sendReport" = lock false;
+          "browser.urlbar.groupLabels.enabled" = lock false;
+          "browser.urlbar.quicksuggest.enabled" = lock false;
+          "browser.urlbar.speculativeConnect.enabled" = lock false;
+          "browser.urlbar.trimURLs" = lock false;
+          "datareporting.policy.dataSubmissionEnabled" = lock false;
+          "dom.battery.enabled" = lock false;
+          "dom.event.clipboardevents.enabled" = lock false;
+          "dom.security.https_only_mode" = lock true;
+          "dom.security.https_only_mode_ever_enabled" = lock true;
+          "dom.webaudio.enabled" = lock false;
+          "media.autoplay.default" = lock 1; # 0 for allow and 2 for asking a user on each site
+          "media.eme.enabled" = lock false; #drm
+          "media.gmp-widevinecdm.enabled" = lock false; #drm
+          "media.navigator.enabled" = lock false;
+          "media.peerconnection.enabled" = lock false;
+          "media.video_stats.enabled" = lock false;
+          "network.allow-experiments" = lock false;
+          "network.captive-portal-service.enabled" = lock false;
+          "network.cookie.cookieBehavior" = lock 1;
+          "network.dns.disablePrefetch" = lock true;
+          "network.dns.disablePrefetchFromHTTPS" = lock true;
+          "network.http.referer.spoofSource" = lock true;
+          "network.http.speculative-parallel-limit" = lock 0;
+          "network.predictor.enable-prefetch" = lock 0;
+          "network.predictor.enabled" = lock false;
+          "network.prefetch-next" = lock false;
+          "network.trr.custom_uri" = lock "https://1.1.1.1";
+          "network.trr.mode" = lock 2;
+          "pdfjs.enableScripting" = lock false;
+          "signon.autofillForms" = lock false;
+          "browser.urlbar.suggest.searches" = lock false;
+          "browser.urlbar.showSearchSuggestionsFirst" = lock false;
+          "browser.newtabpage.activity-stream.showSponsored" = lock false;
+          "browser.newtabpage.activity-stream.system.showSponsored" = lock false;
+          "browser.newtabpage.activity-stream.showSponsoredTopSites" = lock false;
+          "extensions.pocket.enabled" = lock false;
+          "extensions.screenshots.disabled" = lock true;
       
           # needed for custom css
-          "toolkit.legacyUserProfileCustomizations.stylesheets" = lock-true;
+          "toolkit.legacyUserProfileCustomizations.stylesheets" = lock true;
         };
       };
 
