@@ -180,7 +180,6 @@
 
     thermald.enable = true;
     udisks2.enable = true;
-    zerotierone.enable = true;
   };
 
   security = {

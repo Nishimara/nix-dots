@@ -49,7 +49,6 @@
           "steam-original"
           "steam-run"
           "nvidia-x11"
-          "zerotierone"
         ];
       };
     };
