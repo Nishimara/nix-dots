@@ -5,6 +5,7 @@
     services.syncthing = {
       enable = true;
       openDefaultPorts = true;
+      user = "ayako";
     };
   };
 }
