@@ -19,10 +19,6 @@ in
     ./hypridle
   ];
 
-  home.packages = with pkgs; [
-    hyprpaper
-  ];
-
   wayland.windowManager.hyprland = {
     enable = true;
 
@@ -200,11 +196,21 @@ in
     };
   };
 
-  xdg.configFile."hypr/hyprpaper.conf".text = ''
-    preload = ${../../../imgs/wallpaper.jpg}
+  services.hyprpaper = let
+    wallpaper = builtins.fetchurl {
+      url = "https://livewallp.com/wp-content/uploads/2023/02/JK-in-the-reeds.png";
+      sha256 = "sha256:0vpx9vr4s4a5n4xqmhc7h9j5s3n7y1s9ps0azfdxipkgqxr5w400";
+    };
+  in {
+    enable = true;
 
-    wallpaper = ,${../../../imgs/wallpaper.jpg}
-    ipc = off
-  '';
+    settings = {
+      preload = [ wallpaper ];
 
+      wallpaper = [ ",${wallpaper}" ];
+
+      splash = true;
+      ipc = false;
+    };
+  };
 }
