@@ -1,8 +1,8 @@
 diff --git a/src/main.rs b/src/main.rs
-index 8b164d3..6efb868 100644
+index 76cdfaa..b11be86 100644
 --- a/src/main.rs
 +++ b/src/main.rs
-@@ -26,7 +26,7 @@ fn main() -> Result<()> {
+@@ -28,7 +28,7 @@ fn main() -> Result<()> {
  fn self_elevate() -> ! {
      use std::os::unix::process::CommandExt;
  
@@ -12,42 +12,56 @@ index 8b164d3..6efb868 100644
      debug!("{:?}", cmd);
      let err = cmd.exec();
 diff --git a/src/nixos.rs b/src/nixos.rs
-index bfb0cf8..9533498 100644
+index 32075d4..2a8cd9f 100644
 --- a/src/nixos.rs
 +++ b/src/nixos.rs
-@@ -28,7 +28,7 @@ impl NHRunnable for interface::OsArgs {
+@@ -28,19 +28,19 @@ impl NHRunnable for interface::OsArgs {
+ 
  impl OsRebuildArgs {
      pub fn rebuild(&self, rebuild_type: &OsRebuildType) -> Result<()> {
-         if nix::unistd::Uid::effective().is_root() {
--            bail!("Don't run nh os as root. I will call sudo internally as needed");
-+            bail!("Don't run nh os as root. I will call doas internally as needed");
-         }
+-        let use_sudo = if self.bypass_root_check {
++        let use_doas = if self.bypass_root_check {
+             warn!("Bypassing root check, now running nix as root");
+             false
+         } else {
+             if nix::unistd::Uid::effective().is_root() {
+-                bail!("Don't run nh os as root. I will call sudo internally as needed");
++                bail!("Don't run nh os as root. I will call doas internally as needed");
+             }
+             true
+         };
+ 
+         // TODO: add a  .maybe_arg to CommandBuilder
+         // so that I can do .maybe_arg( Option<T> )
+-        let sudo_args: &[_] = if use_sudo { &["sudo"] } else { &[] };
++        let doas_args: &[_] = if use_doas { &["doas"] } else { &[] };
  
          let hostname = match &self.hostname {
-@@ -132,7 +132,7 @@ impl OsRebuildArgs {
+             Some(h) => h.to_owned(),
+@@ -145,7 +145,7 @@ impl OsRebuildArgs {
              let switch_to_configuration = switch_to_configuration.to_str().unwrap();
  
              commands::CommandBuilder::default()
--                .args(["sudo", switch_to_configuration, "test"])
-+                .args(["doas", switch_to_configuration, "test"])
+-                .args(sudo_args)
++                .args(doas_args)
+                 .args([switch_to_configuration, "test"])
                  .message("Activating configuration")
                  .build()?
-                 .exec()?;
-@@ -141,7 +141,7 @@ impl OsRebuildArgs {
+@@ -154,7 +154,7 @@ impl OsRebuildArgs {
+ 
          if let Boot(_) | Switch(_) = rebuild_type {
              commands::CommandBuilder::default()
-                 .args([
--                    "sudo",
-+                    "doas",
-                     "nix-env",
-                     "--profile",
-                     SYSTEM_PROFILE,
-@@ -156,7 +156,7 @@ impl OsRebuildArgs {
+-                .args(sudo_args)
++                .args(doas_args)
+                 .args(["nix-env", "--profile", SYSTEM_PROFILE, "--set"])
+                 .args([out_path.get_path()])
+                 .build()?
+@@ -168,7 +168,7 @@ impl OsRebuildArgs {
              let switch_to_configuration = switch_to_configuration.to_str().unwrap();
  
              commands::CommandBuilder::default()
--                .args(["sudo", switch_to_configuration, "boot"])
-+                .args(["doas", switch_to_configuration, "boot"])
+-                .args(sudo_args)
++                .args(doas_args)
+                 .args([switch_to_configuration, "boot"])
                  .message("Adding configuration to bootloader")
                  .build()?
-                 .exec()?;

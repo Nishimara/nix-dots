@@ -10,7 +10,7 @@ let
     "gsconnect"
     "media-controls"
     "pip-on-top"
-    "rounded-window-corners"
+    "rounded-window-corners-reborn"
   ];
 in
 {

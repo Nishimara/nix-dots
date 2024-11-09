@@ -148,6 +148,7 @@ in
       bindr = [
         "$mod, G, exec, pkill wofi || wofi --show drun"
         "$mod, Y, exec, pkill -SIGUSR1 waybar" # hide/unhide waybar
+        "$mod, F, fullscreen, 0"
       ];
 
       binde = [
