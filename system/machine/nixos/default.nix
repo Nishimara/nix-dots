@@ -28,14 +28,11 @@
       efi.canTouchEfiVariables = true;
     };
     tmp.cleanOnBoot = true;
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_latest;
   };
 
   hardware = {
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-    };
+    bluetooth.enable = true;
   };
 
   networking = {
@@ -175,7 +172,29 @@
       enable = true;
       alsa.enable = true;
       pulse.enable = true;
+      jack.enable = false;
       wireplumber.enable = true;
+
+      extraConfig = {
+        pipewire = {
+          "properties" = {
+            default.clock.allowed-rates = [ 44100 48000 96000 ];
+            default.clock.quantum = 256;
+            default.clock.min-quantum = 256;
+            default.clock.max-quantum = 256;
+          };
+        };
+
+        pipewire-pulse = {
+          "properties" = {
+            pulse.min = {
+              req = "256/48000";
+              frag = "256/48000";
+              quantum = "256/48000";
+            };
+          };
+        };
+      };
     };
 
     thermald.enable = true;

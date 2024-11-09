@@ -11,11 +11,6 @@
       signByDefault = true;
     };
 
-    difftastic = {
-      enable = true;
-      background = "dark";
-    };
-
     extraConfig = {
       init = {
         defaultBranch = "main";

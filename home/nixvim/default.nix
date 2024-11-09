@@ -73,10 +73,10 @@
 
         servers = {
           clangd.enable = true;
-          tsserver.enable = true;
+          ts_ls.enable = true;
           nixd.enable = true;
           pylyzer.enable = true;
-          rust-analyzer = {
+          rust_analyzer = {
             enable = true;
             installCargo = false;
             installRustc = false;
@@ -106,6 +106,8 @@
           indent.enable = true;
         };
       };
+
+      web-devicons.enable = true;
     };
   };
 }

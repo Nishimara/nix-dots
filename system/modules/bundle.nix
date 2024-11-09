@@ -8,6 +8,7 @@
     ./proxychains
     ./gnome
     ./nvidia
+    ./zapret
     ./doh
     ./hosts
     ./syncthing

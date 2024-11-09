@@ -46,7 +46,7 @@
       config = {
         allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
           "steam"
-          "steam-original"
+          "steam-unwrapped"
           "steam-run"
           "nvidia-x11"
         ];
@@ -69,7 +69,7 @@
     };
 
     nixosConfigurations.thinkpad = nixpkgs.lib.nixosSystem {
-      inherit system pkgs;
+      inherit pkgs;
 
       modules = [
         ./system/machine/thinkpad
