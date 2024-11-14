@@ -75,7 +75,7 @@
           clangd.enable = true;
           ts_ls.enable = true;
           nixd.enable = true;
-          pylyzer.enable = true;
+          pyright.enable = true;
           rust_analyzer = {
             enable = true;
             installCargo = false;
