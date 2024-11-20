@@ -14,6 +14,7 @@ in {
         DisableAccounts = true;
         DisableFirefoxScreenshots = true;
         DisableTelemetry = true;
+        DisableForgetButton = true;
         DisableFirefoxStudies = true;
         OverrideFirstRunPage = "";
         OverridePostUpdatePage = "";
@@ -70,6 +71,7 @@ in {
           "browser.sessionstore.privacy_level" = lock 0;
           "browser.startup.homepage_override.mstone" = lock "ignore";
           "browser.tabs.crashReporting.sendReport" = lock false;
+          "browser.tabs.inTitlebar" = lock 0;
           "browser.urlbar.groupLabels.enabled" = lock false;
           "browser.urlbar.quicksuggest.enabled" = lock false;
           "browser.urlbar.speculativeConnect.enabled" = lock false;

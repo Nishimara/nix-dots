@@ -51,3 +51,17 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
 #toolbar-menubar {
     visibility: collapse !important;
 }
+
+/* fuck webrtc duh */
+#webrtcIndicator {
+    display: none;
+}
+
+/* disable flashbang during page loading */
+#tabbrowser-tabpanels,
+#browser vbox#appcontent tabbrowser,
+#content,
+browser[type="content-primary"],
+browser[type="content"] > html {
+    background-color: -moz-Dialog !important;
+}
