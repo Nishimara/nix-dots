@@ -16,5 +16,6 @@
     ./foot
     ./yazi
     ./cursor
+    ./spotify
   ];
 }
