@@ -32,9 +32,14 @@
       url = "github:wamserma/flake-programs-sqlite";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    spicetify = {
+      url = "github:gerg-l/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, agenix, nixvim, hyprland, lanzaboote, nix-programs-sqlite, ... }@inputs: let
+  outputs = { nixpkgs, home-manager, agenix, nixvim, hyprland, lanzaboote, nix-programs-sqlite, spicetify, ... }@inputs: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
@@ -45,6 +50,7 @@
 
       config = {
         allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+          "spotify"
           "steam"
           "steam-unwrapped"
           "steam-run"
@@ -87,6 +93,7 @@
       modules = [
         ./home
         nixvim.homeManagerModules.nixvim
+        spicetify.homeManagerModules.default
       ];
 
       extraSpecialArgs = { inherit inputs; };
