@@ -1,9 +1,11 @@
-{ config, lib, ... }: {
+{ config, lib, inputs, ... }: {
   options.modules.nix.enable = lib.mkEnableOption "Enable default settings for nix";
 
   config = lib.mkIf config.modules.nix.enable {
     nix = {
       channel.enable = false;
+
+      registry = lib.mapAttrs (_: flake: { inherit flake; }) inputs;
 
       settings = {
         experimental-features = [ "nix-command" "flakes" ];
