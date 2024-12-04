@@ -185,9 +185,34 @@ in {
         # * standart mozilla dark theme
       ];
 
-      # https://github.com/Khalylexe/Firefox-Rounded-Theme
-      userContent = builtins.replaceStrings [ "wallpaper.jpg" ] [ "${../../imgs/firefox-wp.jpg}" ] "${builtins.readFile ./userContent.css}";
-      userChrome = builtins.readFile ./userChrome.css;
+      userContent = ''
+        @-moz-document url-prefix("about:newtab"), url-prefix("about:home") {
+            /* makes Support and Release Note invincible */
+            .releasenote {
+                color: #ffffff00 !important;
+            }
+
+            body {
+                background: url(${../../imgs/firefox-wp.jpg}) !important; background-size: cover !important;
+            }
+        }
+      '';
+
+      userChrome = ''
+        /* fuck webrtc duh */
+        #webrtcIndicator {
+            display: none;
+        }
+
+        /* disable flashbang during page loading */
+        #tabbrowser-tabpanels,
+        #browser vbox#appcontent tabbrowser,
+        #content,
+        browser[type="content-primary"],
+        browser[type="content"] > html {
+            background-color: -moz-Dialog !important;
+        }
+      '';
 
       search = {
         default = "DuckDuckGo";
