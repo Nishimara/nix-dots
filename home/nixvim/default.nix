@@ -63,7 +63,6 @@
 
       comment.enable = true;
       gitsigns.enable = true;
-      guess-indent.enable = true;
       hmts.enable = true;
       illuminate.enable = true;
       luasnip.enable = true;
