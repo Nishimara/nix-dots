@@ -5,6 +5,7 @@ let
     "appindicator"
     "auto-move-windows"
     "blur-my-shell"
+    "caffeine"
     "dash-to-dock"
     "disable-unredirect"
     "gsconnect"
