@@ -1,8 +1,8 @@
 diff --git a/src/main.rs b/src/main.rs
-index 76cdfaa..b11be86 100644
+index c0543ac..793adf7 100644
 --- a/src/main.rs
 +++ b/src/main.rs
-@@ -28,7 +28,7 @@ fn main() -> Result<()> {
+@@ -29,7 +29,7 @@ fn main() -> Result<()> {
  fn self_elevate() -> ! {
      use std::os::unix::process::CommandExt;
  
@@ -12,13 +12,13 @@ index 76cdfaa..b11be86 100644
      debug!("{:?}", cmd);
      let err = cmd.exec();
 diff --git a/src/nixos.rs b/src/nixos.rs
-index 32075d4..2a8cd9f 100644
+index 02733bc..0182793 100644
 --- a/src/nixos.rs
 +++ b/src/nixos.rs
-@@ -28,19 +28,19 @@ impl NHRunnable for interface::OsArgs {
+@@ -30,19 +30,19 @@ impl NHRunnable for interface::OsArgs {
  
- impl OsRebuildArgs {
-     pub fn rebuild(&self, rebuild_type: &OsRebuildType) -> Result<()> {
+ impl OsSubcommandArgs {
+     pub fn rebuild(&self, rebuild_type: &OsCommandType) -> Result<()> {
 -        let use_sudo = if self.bypass_root_check {
 +        let use_doas = if self.bypass_root_check {
              warn!("Bypassing root check, now running nix as root");
@@ -38,7 +38,7 @@ index 32075d4..2a8cd9f 100644
  
          let hostname = match &self.hostname {
              Some(h) => h.to_owned(),
-@@ -145,7 +145,7 @@ impl OsRebuildArgs {
+@@ -147,7 +147,7 @@ impl OsSubcommandArgs {
              let switch_to_configuration = switch_to_configuration.to_str().unwrap();
  
              commands::CommandBuilder::default()
@@ -47,7 +47,7 @@ index 32075d4..2a8cd9f 100644
                  .args([switch_to_configuration, "test"])
                  .message("Activating configuration")
                  .build()?
-@@ -154,7 +154,7 @@ impl OsRebuildArgs {
+@@ -156,7 +156,7 @@ impl OsSubcommandArgs {
  
          if let Boot(_) | Switch(_) = rebuild_type {
              commands::CommandBuilder::default()
@@ -56,7 +56,7 @@ index 32075d4..2a8cd9f 100644
                  .args(["nix-env", "--profile", SYSTEM_PROFILE, "--set"])
                  .args([out_path.get_path()])
                  .build()?
-@@ -168,7 +168,7 @@ impl OsRebuildArgs {
+@@ -170,7 +170,7 @@ impl OsSubcommandArgs {
              let switch_to_configuration = switch_to_configuration.to_str().unwrap();
  
              commands::CommandBuilder::default()

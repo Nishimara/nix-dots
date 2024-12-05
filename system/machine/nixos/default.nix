@@ -64,18 +64,15 @@
   fonts = { 
     packages = with pkgs; [
       noto-fonts
-      (nerdfonts.override {
-        fonts = [
-          "Hack"
-          "JetBrainsMono"
-          "Iosevka"
-          "NerdFontsSymbolsOnly"
-        ];
-      })
 
       # unicode
       unifont
-    ];
+    ] ++ (with nerd-fonts; [
+      hack
+      jetbrains-mono
+      iosevka
+      symbols-only
+    ]);
 
     fontconfig.defaultFonts = {
       serif = [
@@ -159,6 +156,7 @@
     
     greetd = {
       enable = true;
+      vt = 7;
 
       settings = {
         default_session = {
@@ -177,22 +175,27 @@
 
       extraConfig = {
         pipewire = {
-          "properties" = {
+          "context.properties" = {
+            default.clock.rate = 48000;
             default.clock.allowed-rates = [ 44100 48000 96000 ];
-            default.clock.quantum = 256;
-            default.clock.min-quantum = 256;
-            default.clock.max-quantum = 256;
+            default.clock.min-quantum = 16;
           };
-        };
 
-        pipewire-pulse = {
-          "properties" = {
-            pulse.min = {
-              req = "256/48000";
-              frag = "256/48000";
-              quantum = "256/48000";
-            };
-          };
+          # Uses realtime scheduling to boost the audio thread priorities. This uses
+          # RTKit if the user doesn't have permission to use regular realtime
+          # scheduling.
+          "context.modules" = [
+            {
+              name = "libpipewire-module-rt";
+              args = {
+                nice.level = -12;
+                rt.prio = 89;
+                rt.time.soft = 200000;
+                rt.time.hard = 200000;
+              };
+              flags = [ "ifexists" "nofail" ];
+            }
+          ];
         };
       };
     };
@@ -204,6 +207,7 @@
   security = {
     pam.services.swaylock = {};
 
+    rtkit.enable = true;
     polkit = {
       enable = true;
       extraConfig = ''
