@@ -15,11 +15,11 @@
       tb = "nc termbin.com 9999";
     };
 
-    plugins = [
-      { name = "grc"; src = pkgs.fishPlugins.grc.src; }
-      { name = "z"; src = pkgs.fishPlugins.z.src; }
-      { name = "bass"; src = pkgs.fishPlugins.bass.src; }
-      { name = "fzf"; src = pkgs.fishPlugins.fzf.src; }
+    plugins = with pkgs.fishPlugins; [
+      { name = "grc"; inherit (grc) src; }
+      { name = "z"; inherit (z) src; }
+      { name = "bass"; inherit (bass) src; }
+      { name = "fzf"; inherit (fzf) src; }
     ];
   };
 
