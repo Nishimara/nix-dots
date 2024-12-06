@@ -51,13 +51,13 @@
     clang
     clang-tools
     nil
-    nixpkgs-fmt
 
     # gui
     grimblast # screenshots
     gimp
     prismlauncher # minecraft
     vesktop # discord with vencord
+    libreoffice-qt
     librewolf
     libnotify
     keepassxc # password manager
@@ -94,7 +94,6 @@
     # misc
     cmus # music
     man-pages
-#   mindustry-wayland # ahh games
     playerctl # control media
   ];
 
