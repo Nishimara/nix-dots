@@ -13,7 +13,7 @@
 
     extraConfig = {
       init = {
-        defaultBranch = "main";
+        defaultBranch = "master";
       };
       gpg = {
         format = "ssh";
