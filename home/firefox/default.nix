@@ -1,7 +1,7 @@
 { pkgs, inputs, ...}:
 let
-  lock = value: {
-    Value = value;
+  lock = Value: {
+    inherit Value;
     Status = "locked";
   };
   profile-name = "alpha";
