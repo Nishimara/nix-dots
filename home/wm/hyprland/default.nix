@@ -205,7 +205,6 @@ in
 
       wallpaper = [ ",${wallpaper}" ];
 
-      splash = true;
       ipc = false;
     };
   };
