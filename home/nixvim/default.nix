@@ -61,6 +61,8 @@
         };
       };
 
+      colorizer.enable = true;
+
       comment.enable = true;
       gitsigns.enable = true;
       hmts.enable = true;
@@ -86,16 +88,6 @@
       neo-tree.enable = true;
       nix.enable = true;
       nvim-autopairs.enable = true;
-
-      nvim-colorizer = {
-        enable = true;
-
-        userDefaultOptions = {
-          css = true;
-          mode = "background";
-        };
-      };
-
       transparent.enable = true;
 
       treesitter = {
