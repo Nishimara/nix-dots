@@ -3,7 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/bundle.nix
+    ../../modules
   ];
 
   modules = {
