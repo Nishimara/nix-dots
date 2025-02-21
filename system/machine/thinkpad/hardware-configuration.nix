@@ -9,7 +9,16 @@
       availableKernelModules = [ "nvme" "ehci_pci" "xhci_pci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
       kernelModules = [ ];
     };
-    kernelParams = [ "mem_sleep_default=deep" ];
+
+    kernelParams = [
+      # Force use of the thinkpad_acpi driver for backlight control.
+      # This allows the backlight save/load systemd service to work.
+      "acpi_backlight=native"
+
+      # Needed for touchpad to work properly (click doesn't register by pushing down the touchpad).
+      "psmouse.synaptics_intertouch=0"
+    ];
+
     kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];
   };
