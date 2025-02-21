@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./remotebuilder.nix
     ../../modules
   ];
 
