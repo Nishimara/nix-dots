@@ -1,6 +1,7 @@
 { pkgs, lib, ... }: {
   imports = [
     ./hardware-configuration.nix
+    ./remotebuilder.nix
     ../../modules
   ];
 
@@ -79,7 +80,7 @@
   };
 
   services = {
-    auto-cpufreq.enable = true;
+#   auto-cpufreq.enable = true;
     power-profiles-daemon.enable = lib.mkForce false;
 
     printing.enable = true;
@@ -88,6 +89,38 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+    };
+    fstrim.enable = true;
+    tlp = {
+      enable = true;
+
+      settings = {
+        PLATFORM_PROFILE_ON_AC = "performance";
+        PLATFORM_PROFILE_ON_BAT = "balanced";
+
+        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
+
+        CPU_BOOST_ON_AC = 1;
+        CPU_BOOST_ON_BAT = 0;
+
+        AMDGPU_ABM_LEVEL_ON_AC = 0;
+        AMDGPU_ABM_LEVEL_ON_BAT = 0;
+
+        RADEON_DPM_PERF_LEVEL_ON_AC = "high";
+        RADEON_DPM_PERF_LEVEL_ON_BAT = "high";
+
+        RADEON_DPM_STATE_ON_AC = "performance";
+        RADEON_DPM_STATE_ON_BAT = "performance";
+
+        CPU_MIN_PERF_ON_AC = 0;
+        CPU_MAX_PERF_ON_AC = 100;
+        CPU_MIN_PERF_BAT = 0;
+        CPU_MAX_PERF_BAT = 40;
+
+        START_CHARGE_THRESH_BAT0 = 50;
+        STOP_CHARGE_THRESH_BAT0 = 95;
+      };
     };
     xserver.xkb = {
       layout = "us";

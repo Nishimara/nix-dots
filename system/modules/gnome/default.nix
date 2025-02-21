@@ -3,7 +3,7 @@
   options.modules.gnome.enable = lib.mkEnableOption "gnome";
 
   config = lib.mkIf config.modules.gnome.enable {
-    hardware.pulseaudio.enable = false;
+    services.pulseaudio.enable = false;
 
     environment.gnome.excludePackages = with pkgs; [
       atomix # game
