@@ -11,7 +11,8 @@
         experimental-features = [ "nix-command" "flakes" ];
         auto-optimise-store = true;
 
-        substituters = [
+        substituters = lib.mkForce [
+          "https://nixos-cache-proxy.cofob.dev"
           "https://hyprland.cachix.org"
           "https://nishimara.cachix.org"
           "https://nix-gaming.cachix.org"
