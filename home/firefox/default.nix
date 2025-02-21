@@ -167,7 +167,7 @@ in {
     profiles.${profile-name} = {
       id = 0;
       isDefault = true;
-      extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+      extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
         # all the exts can be found there
         # https://gitlab.com/rycee/nur-expressions/-/blob/master/pkgs/firefox-addons/addons.json?ref_type=heads
 
