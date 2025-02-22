@@ -172,6 +172,7 @@ in {
 
         clearurls
         darkreader
+        dearrow
         istilldontcareaboutcookies
         ublock-origin
         seventv
