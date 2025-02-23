@@ -240,7 +240,13 @@
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 25565 ];
+    allowedTCPPorts = [
+      25565 # minecraft
+      57621 # spotify sync
+    ];
+    allowedUDPPorts = [
+      5353 # spotify discovery
+    ];
     allowedTCPPortRanges = [
       { from = 1714; to = 1764; } # KDE connect
     ];
