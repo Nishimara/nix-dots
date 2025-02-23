@@ -93,6 +93,8 @@
 
     # misc
     cmus # music
+    graphite-gtk-theme
+    graphite-kde-theme
     man-pages
     playerctl # control media
   ];
