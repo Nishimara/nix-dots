@@ -20,7 +20,7 @@
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-uuid/6b777328-7a9f-4993-9975-dbf108f9bbb9";
+      device = "/dev/disk/by-uuid/69d44200-f0a1-4e02-afa2-11ca83a24a09";
       fsType = "btrfs";
       options = [ "subvol=@" "ssd" "compress=zstd" ];
     };
@@ -35,12 +35,6 @@
       device = "/dev/disk/by-uuid/be118546-895f-4e8b-8e93-8939d149b1ff";
       fsType = "ext4";
       options = [ "nodev" "nosuid" ];
-    };
-
-    "/home/ayako/Games" = {
-      device = "/dev/disk/by-uuid/6b777328-7a9f-4993-9975-dbf108f9bbb9";
-      fsType = "btrfs";
-      options = [ "subvol=Games" "ssd" "compress=zstd" "nodev" "nosuid" ];
     };
   };
 
