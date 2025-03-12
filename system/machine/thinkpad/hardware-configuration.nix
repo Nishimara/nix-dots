@@ -36,7 +36,7 @@
     };
   };
 
-  swapDevices = lib.mkForce [ ];
+  swapDevices = [ ];
   zramSwap = {
     enable = true;
     memoryPercent = 100;
