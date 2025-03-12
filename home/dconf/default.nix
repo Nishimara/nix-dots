@@ -25,6 +25,7 @@ in
       switch-input-source = [ "<Shift>Alt_L" ];
       switch-input-source-backward = [ "<Alt>Shift_L" ];
     };
+    "org/gnome/desktop/peripherals/touchpad".disable-while-typing = false;
     "org/gnome/shell" = {
       disable-user-extensions = false;
 
@@ -37,13 +38,6 @@ in
     iconTheme = {
       name = "Papirus";
       package = pkgs.papirus-icon-theme;
-    };
-
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
     };
   };
 }
