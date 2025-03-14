@@ -6,19 +6,19 @@
 
     profiles.default = {
       extensions = with pkgs.vscode-extensions; [
-        dracula-theme.theme-dracula
+        catppuccin.catppuccin-vsc
         pkief.material-icon-theme
       ];
 
       userSettings = {
-        "workbench.colorTheme" = "Dracula";
-        "workbench.iconTheme" = "material-icon-theme";
         "editor.fontSize" = 16;
         "editor.fontFamily" = "Hack Nerd Font";
-        "terminal.integrated.fontFamily" = "monospace";
-        "editor.unicodeHighlight.allowedLocales".ru = true;
-        "window.titleBarStyle" = "custom";
         "editor.renderLineHighlight" = "none";
+        "editor.unicodeHighlight.allowedLocales".ru = true;
+        "terminal.integrated.fontFamily" = "Hack Nerd Font";
+        "window.titleBarStyle" = "custom";
+        "workbench.colorTheme" = "Catppuccin Frappé";
+        "workbench.iconTheme" = "material-icon-theme";
       };
     };
   };

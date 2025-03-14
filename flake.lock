@@ -56,6 +56,26 @@
         "type": "github"
       }
     },
+    "catppuccin-vsc": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1739527968,
+        "narHash": "sha256-4ApAOtFIbqhtHpC59nEC1SdNX75D1dipDiB6rUhyqTY=",
+        "owner": "catppuccin",
+        "repo": "vscode",
+        "rev": "b8e5951a8ad03268854ef29780ce93fe9ea14294",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "vscode",
+        "type": "github"
+      }
+    },
     "crane": {
       "locked": {
         "lastModified": 1731098351,
@@ -804,6 +824,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "catppuccin-vsc": "catppuccin-vsc",
         "firefox-addons": "firefox-addons",
         "home-manager": "home-manager_2",
         "hyprland": "hyprland",
