@@ -8,14 +8,22 @@
         event = [ "VimEnter" ];
         command = ":TransparentEnable";
       }
+      {
+        event = [ "VimLeave" ];
+        command = ":set guicursor=a:ver20-blinkon500";
+      }
     ];
+
+    clipboard.providers.wl-copy.enable = true;
 
     opts = {
       number = true;
       relativenumber = true;
 
       shiftwidth = 4;
-      tabstop = 4;
+      tabstop = 2;
+      softtabstop = 2;
+      showtabline = 2;
       smartindent = true;
       expandtab = true;
     };
