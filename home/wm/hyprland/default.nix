@@ -45,7 +45,7 @@ in
         "[workspace 1 silent] firefox"
         "[workspace 2 silent] materialgram"
         "[workspace 3 silent] foot"
-        "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
+        "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
 
         "tmux setenv -g HYPRLAND_INSTANCE_SIGNATURE \"$HYPRLAND_INSTANCE_SIGNATURE\""
       ];
