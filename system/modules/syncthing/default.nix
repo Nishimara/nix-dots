@@ -6,6 +6,7 @@
       enable = true;
       openDefaultPorts = true;
       user = "ayako";
+      dataDir = "/home/ayako";
     };
   };
 }
