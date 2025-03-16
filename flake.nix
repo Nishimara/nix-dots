@@ -2,43 +2,53 @@
   description = "Flake";
 
   inputs = {
+    # https://github.com/nixOS/nixpkgs/tree/nixos-unstable
     nixpkgs.url = "github:nixOS/nixpkgs/nixos-unstable";
-    
+
+    # https://github.com/nix-community/home-manager
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # https://github.com/ryantm/agenix
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "";
     };
 
+    # https://github.com/nix-community/nixvim
     nixvim.url = "github:nix-community/nixvim";
 
+    # https://github.com/hyprwm/Hyprland
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
+    # https://gitlab.com/rycee/nur-expressions/-/tree/master/pkgs/firefox-addons
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # https://github.com/nix-community/lanzaboote/tree/v0.4.2
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # https://github.com/wamserma/flake-programs-sqlite
     nix-programs-sqlite = {
       url = "github:wamserma/flake-programs-sqlite";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # https://github.com/gerg-l/spicetify-nix
     spicetify = {
       url = "github:gerg-l/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # https://github.com/catppuccin/vscode
     catppuccin-vsc = {
       url = "github:catppuccin/vscode";
       inputs.nixpkgs.follows = "nixpkgs";
