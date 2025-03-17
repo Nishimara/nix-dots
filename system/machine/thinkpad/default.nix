@@ -12,6 +12,7 @@
     podman.enable = true;
     nh.enable = true;
     nix.enable = true;
+    tailscale.enable = true;
     sshd.enable = true;
     steam.enable = true;
     syncthing.enable = true;
