@@ -10,6 +10,7 @@
   modules = {
     doh.enable = true;
     hosts.enable = true;
+    immich.enable = true;
     podman.enable = true;
     nh.enable = true;
     nvidia.enable = true;

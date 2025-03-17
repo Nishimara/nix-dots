@@ -17,5 +17,6 @@
     ./sshd
     ./nix
     ./nh
+    ./immich
   ];
 }
