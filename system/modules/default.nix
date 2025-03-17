@@ -18,5 +18,6 @@
     ./nix
     ./nh
     ./immich
+    ./tailscale
   ];
 }
