@@ -15,10 +15,12 @@
 
     enabledExtensions = with spicePkgs.extensions; [
       adblock
+      beautifulLyrics
       hidePodcasts
       shuffle
     ];
 
+    # idk if that's still relevant ¯\_(ツ)_/¯
     windowManagerPatch = true;
 
     theme = spicePkgs.themes.catppuccin;
