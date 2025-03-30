@@ -36,6 +36,12 @@
       fsType = "ext4";
       options = [ "nodev" "nosuid" ];
     };
+
+    "/var/lib/immich" = {
+      device = "/dev/disk/by-uuid/66381039-13ec-4aa5-9282-3fec7805491e";
+      fsType = "ext4";
+      options = [ "nodev" "nosuid" "noexec" ];
+    };
   };
 
   swapDevices = [];
