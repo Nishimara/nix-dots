@@ -118,18 +118,10 @@ tooltip {
 
 
 #pulseaudio {
-  color: #89b4fa;
+  color: #cba6f7;
   border-left: 0px;
   border-right: 0px;
   border-radius: 15px 0px 0px 15px;
-}
-
-#pulseaudio.microphone {
-    color: #cba6f7;
-    border-left: 0px;
-    border-right: 0px;
-    border-radius: 0px 15px 15px 0px;
-    margin-right: 2px;
 }
 
 #language {

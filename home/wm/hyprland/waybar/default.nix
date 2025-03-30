@@ -9,7 +9,7 @@
         height = 42;
         modules-left = [ "hyprland/workspaces" "hyprland/window" ];
         modules-center = [ "custom/media" ];
-        modules-right = [ "pulseaudio" "pulseaudio#microphone" "cpu" "disk" "memory" "hyprland/language" "clock" "tray" ];
+        modules-right = [ "pulseaudio" "cpu" "disk" "memory" "hyprland/language" "clock" "tray" ];
 
         "hyprland/workspaces" = {
           disable-scroll = true;
@@ -93,16 +93,6 @@
           };
         };
 
-        "pulseaudio#microphone" = {
-          format = "{format_source}";
-          format-source = "󰍬 {volume}%";
-          format-source-muted = "󰍭 Muted";
-          on-click = "amixer set Capture toggle";
-          on-scroll-up = "amixer -q sset Capture 5%+";
-          on-scroll-down = "amixer -q sset Capture 5%-";
-          scoll-step = 5;
-        }; #thanks to https://github.com/Cybersnake223/Hypr
-        
         "custom/media" = {
           format = "{icon}<span background='#89b4fa' foreground='#0A1929'> {} </span>";
           format-icons = {
