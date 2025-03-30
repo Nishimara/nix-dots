@@ -6,7 +6,7 @@
     ./fish
     ./git
     ./wm/hyprland
-    ./firefox
+#   ./firefox
     ./vsc
     ./dconf
     ./yt-dlp
@@ -17,5 +17,6 @@
     ./yazi
     ./cursor
     ./spotify
+    ./librewolf
   ];
 }

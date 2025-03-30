@@ -42,7 +42,7 @@ in
         "hyprpaper"
         "mako"
         "waybar"
-        "[workspace 1 silent] firefox"
+        "[workspace 1 silent] librewolf"
         "[workspace 2 silent] materialgram"
         "[workspace 3 silent] foot"
         "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
@@ -116,8 +116,8 @@ in
 
         "workspace 4, class:vesktop"
         "float, class:^(vesktop)$,initialTitle:^(Discord Popout)$"
-        "float, class:^(firefox)$,title:^(Picture-in-Picture)$"
-        "pin, class:$(firefox)$,title:^(Picture-in-Picture)$"
+        "float, class:^(librewolf)$,title:^(Picture-in-Picture)$"
+        "pin, class:$(librewolf)$,title:^(Picture-in-Picture)$"
 
         "float, class:^(steam)$,title:^(Screenshot Manager)$"
         "float, class:^(steam)$,title:^(Friends List)$"

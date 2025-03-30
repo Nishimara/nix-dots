@@ -58,7 +58,6 @@
     prismlauncher # minecraft
     vesktop # discord with vencord
     libreoffice-qt
-    librewolf
     libnotify
     keepassxc # password manager
     qbittorrent
