@@ -32,7 +32,7 @@
     "/boot" = {
       device = "/dev/disk/by-uuid/F55E-2D4D";
       fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" "umask=077" "nodev" "nosuid" ];
+      options = [ "fmask=0022" "dmask=0022" "umask=0077" "nodev" "nosuid" ];
     };
   };
 
