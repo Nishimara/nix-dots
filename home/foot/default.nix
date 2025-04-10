@@ -17,6 +17,11 @@
         blink = "yes";
       };
 
+      csd = {
+        border-width = 2;
+        border-color = "ff404040";
+      };
+
       colors = {
         alpha = "0.8";
 

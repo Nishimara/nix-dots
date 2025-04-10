@@ -81,7 +81,6 @@
         enable = true;
 
         servers = {
-          clangd.enable = true;
           ts_ls.enable = true;
           nixd.enable = true;
           pyright.enable = true;

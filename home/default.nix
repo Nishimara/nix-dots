@@ -27,11 +27,6 @@
     mpris-proxy.enable = true; # control audio via bluetooth headphones buttons
   };
 
-  nix.gc = {
-    automatic = true;
-    options = "-d";
-  };
-
   home = {
     username = "ayako";
     homeDirectory = "/home/ayako";
@@ -46,13 +41,8 @@
   };
 
   home.packages = with pkgs; [
-    # development
-    gnumake
-    clang
-    clang-tools
-    nil
-
     # gui
+    fractal # matrix
     grimblast # screenshots
     gimp
     prismlauncher # minecraft
@@ -63,7 +53,6 @@
     qbittorrent
     gpu-screen-recorder
     gpu-screen-recorder-gtk
-    element-desktop
     eog # image viewer
     materialgram
     nautilus # file manager
